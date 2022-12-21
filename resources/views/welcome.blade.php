@@ -406,7 +406,7 @@
         @endauth
       </div>
     @endif
-    {{ Hash::make('1q2w3e4r5t') }}
+
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
       <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
         <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -475,7 +475,8 @@
 
             <div class="ml-12">
               <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                {{ Hash::make('1q2w3e4r5t') }}
+                Laravel News is a community driven portal and newsletter aggregating all of the latest and most
+                important news in the Laravel ecosystem, including new package releases and tutorials.
               </div>
             </div>
           </div>
