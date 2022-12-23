@@ -1,7 +1,7 @@
 <div>
     <div class="block xl:grid grid-cols-2 gap-4">
         <div class="hidden xl:flex flex-col min-h-screen">
-            <a href="" class="-intro-x flex items-center pt-5">
+            <a href="/" class="-intro-x flex items-center pt-5">
                 <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="dist/images/logo.svg">
                 <span class="text-white text-lg ml-3"> Ice<span class="font-medium">wall</span> </span>
             </a>
@@ -30,10 +30,10 @@
                 <form wire:submit.prevent="submit">
                     <div class="intro-x mt-8">
                         <input type="text" class="intro-x login__input form-control py-3 px-4 border-gray-300 block"
-                            wire:model.defer="username" placeholder="Username">
+                            wire:model.defer="username" placeholder="Username" autocomplete="off">
                         <input type="password"
                             class="intro-x login__input form-control py-3 px-4 border-gray-300 block mt-4"
-                            wire:model.defer="password" placeholder="Password">
+                            wire:model.defer="password" placeholder="Password" autocomplete="off">
                     </div>
                     <div class="intro-x flex text-gray-700 dark:text-gray-600 text-xs sm:text-sm mt-4">
                         <div class="flex items-center mr-auto">

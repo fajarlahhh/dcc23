@@ -18,6 +18,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'pin',
     ];
 
     /**
@@ -38,4 +39,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
+    }
+
+    public function upline()
+    {
+        return $this->belongsTo(User::class, 'upline_id');
+    }
 }

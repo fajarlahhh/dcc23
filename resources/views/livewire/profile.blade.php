@@ -1,0 +1,51 @@
+<div>
+    <form wire:submit.prevent="submit">
+        <div class="modal-body p-10">
+            <div>
+                <label for="regular-form-1" class="form-label">Username</label>
+                <input id="regular-form-1" type="text" class="form-control" value="{{ auth()->user()->username }}"
+                    disabled autocomplete="off">
+            </div>
+            <div class="mt-3">
+                <label for="regular-form-1" class="form-label">Name</label>
+                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="name" required
+                    autocomplete="off">
+            </div>
+            <div class="mt-3">
+                <label for="regular-form-1" class="form-label">Email</label>
+                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="email" required
+                    autocomplete="off">
+            </div>
+            <div class="mt-3">
+                <label for="regular-form-1" class="form-label">Phone</label>
+                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="phone" required
+                    autocomplete="off">
+            </div>
+            <div class="mt-3">
+                <label for="regular-form-1" class="form-label">Upline</label>
+                <input id="regular-form-1" type="text" class="form-control"
+                    value="{{ auth()->user()->upline ? auth()->user()->upline->name : '' }}" disabled
+                    autocomplete="off">
+            </div>
+            <div class="mt-3">
+                <label for="regular-form-1" class="form-label">USDT Wallet <small>BEP-20</small></label>
+                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="wallet" required
+                    autocomplete="off">
+            </div>
+            <div class="alert alert-secondary show mt-5" role="alert">
+                <div>
+                    <label for="regular-form-1" class="form-label">PIN</label>
+                    <input id="regular-form-1" type="text" class="form-control" wire:model.defer="pin" required
+                        autocomplete="off">
+                </div>
+            </div>
+            <br>
+            <x-alert />
+        </div>
+        <div class="modal-footer p-10">
+            <div class="intro-x text-center xl:text-left">
+                <button type="submit" class="btn btn-primary w-full xl:w-32 xl:mr-3 align-top">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
