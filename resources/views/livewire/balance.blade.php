@@ -21,7 +21,7 @@
                             <div class="ml-auto">
                                 <a href="javascript:;" data-toggle="modal" data-target="#modal-deposit"
                                     class="btn btn-warning w-24">Deposit</a>
-                                <a href="javascript:;" data-toggle="modal" data-target="#modal-send"
+                                <a href="javascript:;" data-toggle="modal" data-target="#modal-sendbalance"
                                     class="btn btn-success w-24">Send</a>
                             </div>
                         </div>
@@ -117,59 +117,12 @@
                 @endforeach
             </div>
         </div>
-        <div id="modal-deposit" class="modal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="font-medium text-base mr-auto">Deposit</h2>
-                    </div>
-                    <form wire:submit.prevent="deposit">
-                        <div class="modal-body">
-                            <div>
-                                <label for="regular-form-1" class="form-label">Amount</label>
-                                <input id="regular-form-1" type="number" class="form-control"
-                                    wire:model.defer="depositAmount" required autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="intro-x text-center xl:text-left">
-                                <button type="submit" data-dismiss="modal"
-                                    class="btn btn-primary w-full xl:w-32 xl:mr-3 align-top">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div id="modal-send" class="modal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="font-medium text-base mr-auto">Send</h2>
-                    </div>
-                    <form wire:submit.prevent="send">
-                        <div class="modal-body">
-                            <div>
-                                <label for="regular-form-1" class="form-label">Amount</label>
-                                <input id="regular-form-1" type="number" class="form-control"
-                                    wire:model.defer="sendAmount" required autocomplete="off">
-                            </div>
-                            <div class="mt-3">
-                                <label for="regular-form-1" class="form-label">Amount</label>
-                                <input id="regular-form-1" type="number" class="form-control"
-                                    wire:model.defer="sendUsername" required autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="intro-x text-center xl:text-left">
-                                <button type="submit" data-dismiss="modal"
-                                    class="btn btn-primary w-full xl:w-32 xl:mr-3 align-top">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <x-modal title='Deposit'>
+            @livewire('form.deposit')
+        </x-modal>
+        <x-modal title='Send Balance'>
+            @livewire('form.sendbalance')
+        </x-modal>
     @else
         <div class="intro-y gap-6 mt-5">
             <h5 class="text-2xl">Waiting For Fund . . .</h5>

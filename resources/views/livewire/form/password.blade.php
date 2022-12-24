@@ -11,7 +11,6 @@
                 <input id="regular-form-1" type="password" class="form-control" wire:model.defer="newPassword" required
                     autocomplete="off">
             </div>
-            <br>
             <x-alert />
         </div>
         <div class="modal-footer">

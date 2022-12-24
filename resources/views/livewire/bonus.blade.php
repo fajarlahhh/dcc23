@@ -107,14 +107,13 @@
                             @endif
                         </div>
                         <div class="ml-4 mr-auto">
-                            <div class="font-medium">
-                                {{ substr($row->from_wallet, 0, 4) . '....' . substr($row->from_wallet, -4) }} ->
+                            <div class="font-medium">To :
                                 {{ substr($row->to_wallet, 0, 4) . '....' . substr($row->to_wallet, -4) }}
                             </div>
                             <div class="text-gray-600 text-xs mt-0.5">
                                 {{ \Carbon\Carbon::parse($row->created_at)->diffForHumans() }}</div>
                         </div>
-                        <div class="{{ $row->processed ? 'text-theme-10' : 'text-theme-22' }}">
+                        <div class="{{ $row->processed_at ? 'text-theme-10' : 'text-theme-22' }}">
                             {{ number_format($row->amount) }}</div>
                     </div>
                 </div>
@@ -128,7 +127,7 @@
                 <div class="modal-header">
                     <h2 class="font-medium text-base mr-auto">Withdrawal</h2>
                 </div>
-                @livewire('withdrawal')
+                @livewire('form.withdrawal')
             </div>
         </div>
     </div>

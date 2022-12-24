@@ -13,6 +13,6 @@ trait MasteruserTrait
 
     public function bootMasteruserTrait()
     {
-        $this->masterUser = User::whereNull('upline_id')->first();
+        $this->masterUser = User::find(1);
     }
 }

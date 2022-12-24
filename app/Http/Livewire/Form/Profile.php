@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Form;
 
 use App\Models\User;
 use Livewire\Component;
@@ -29,6 +29,7 @@ class Profile extends Component
         ]);
 
         if (auth()->user()->pin != $this->pin) {
+            $this->reset(['pin']);
             session()->flash('message', 'danger|Invalid PIN');
         } else {
             $this->data->name = $this->name;
@@ -36,13 +37,12 @@ class Profile extends Component
             $this->data->phone = $this->phone;
             $this->data->wallet = $this->wallet;
             $this->data->save();
-            session()->flash('message', 'success|Profile updated succesfully');
+            return $this->redirect(request()->header('Referer'));
         }
-        $this->reset(['pin']);
     }
 
     public function render()
     {
-        return view('livewire.profile');
+        return view('livewire.form.profile');
     }
 }

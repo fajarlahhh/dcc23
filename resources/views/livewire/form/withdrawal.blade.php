@@ -51,6 +51,13 @@
                     </div>
                 </div>
             </div>
+            <div class="alert alert-secondary show mt-5" role="alert">
+                <div>
+                    <label for="regular-form-1" class="form-label">PIN</label>
+                    <input id="regular-form-1" type="text" class="form-control" wire:model.defer="pin" required
+                        autocomplete="off">
+                </div>
+            </div>
             <x-alert />
         </div>
         <div class="modal-footer">

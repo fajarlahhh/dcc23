@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Form;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -24,15 +24,16 @@ class Password extends Component
             User::find(auth()->id())->update([
                 'password' => Hash::make($this->newPassword),
             ]);
-            session()->flash('message', 'success|Password updated succesfully');
+            auth()->logout();
+            return $this->redirect(request()->header('Referer'));
         } else {
+            $this->reset(['oldPassword', 'newPassword']);
             session()->flash('message', 'danger|Invalid old password');
         }
-        $this->reset(['oldPassword', 'newPassword']);
     }
 
     public function render()
     {
-        return view('livewire.password');
+        return view('livewire.form.password');
     }
 }

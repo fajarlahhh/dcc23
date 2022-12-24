@@ -136,39 +136,18 @@
         </div>
     </div>
 
-    <div id="modal-password" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">Change Password</h1>
-                </div>
-                @livewire('password')
-            </div>
-        </div>
-    </div>
+    <x-modal title='Password'>
+        @livewire('form.password')
+    </x-modal>
+    <x-modal title='Profile'>
+        @livewire('form.profile')
+    </x-modal>
+    <x-modal title='Pin'>
+        @livewire('form.pin')
+    </x-modal>
 
-    <div id="modal-profile" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">Profile</h2>
-                </div>
-                @livewire('profile')
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-pin" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">PIN</h1>
-                </div>
-                @livewire('pin')
-            </div>
-        </div>
-    </div>
     @livewireScripts
+
     <script src="/dist/js/app.js"></script>
 </body>
 

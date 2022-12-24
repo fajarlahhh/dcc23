@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Form;
 
 use App\Models\User;
 use Livewire\Component;
@@ -22,15 +22,15 @@ class Pin extends Component
             User::find(auth()->id())->update([
                 'pin' => $this->newPin,
             ]);
-            session()->flash('message', 'success|PIN updated succesfully');
+            return $this->redirect(request()->header('Referer'));
         } else {
+            $this->reset(['oldPin', 'newPin']);
             session()->flash('message', 'danger|Invalid old PIN');
         }
-        $this->reset(['oldPin', 'newPin']);
     }
 
     public function render()
     {
-        return view('livewire.pin');
+        return view('livewire.form.pin');
     }
 }
