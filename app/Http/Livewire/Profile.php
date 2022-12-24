@@ -30,14 +30,15 @@ class Profile extends Component
 
         if (auth()->user()->pin != $this->pin) {
             session()->flash('message', 'danger|Invalid PIN');
+        } else {
+            $this->data->name = $this->name;
+            $this->data->email = $this->email;
+            $this->data->phone = $this->phone;
+            $this->data->wallet = $this->wallet;
+            $this->data->save();
+            session()->flash('message', 'success|Profile updated succesfully');
         }
-
-        $this->data->name = $this->name;
-        $this->data->email = $this->email;
-        $this->data->phone = $this->phone;
-        $this->data->wallet = $this->wallet;
-        $this->data->save();
-        session()->flash('message', 'success|Profile updated succesfully');
+        $this->reset(['pin']);
     }
 
     public function render()

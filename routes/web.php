@@ -19,4 +19,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', \App\Http\Livewire\Dashboard::class);
+    Route::get('/balance', \App\Http\Livewire\Balance::class);
+    Route::get('/downline', \App\Http\Livewire\Downline::class);
+    Route::get('/bonus', \App\Http\Livewire\Bonus::class);
+    Route::get('/renewal', \App\Http\Livewire\Renewal::class);
 });

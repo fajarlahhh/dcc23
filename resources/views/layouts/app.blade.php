@@ -102,7 +102,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/downline" class="side-menu">
+                        <a href="/balance" class="side-menu">
                             <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
                             <div class="side-menu__title"> Balance </div>
                         </a>
@@ -117,12 +117,6 @@
                         <a href="/downline" class="side-menu">
                             <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                             <div class="side-menu__title"> Downline </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/withdrawal" class="side-menu">
-                            <div class="side-menu__icon"> <i data-feather="package"></i> </div>
-                            <div class="side-menu__title"> Withdrawal </div>
                         </a>
                     </li>
                     <li>
@@ -143,10 +137,10 @@
     </div>
 
     <div id="modal-password" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header p-10">
-                    <h1 class="text-4xl font-medium leading-none">Change Password</h1>
+                <div class="modal-header">
+                    <h2 class="font-medium text-base mr-auto">Change Password</h1>
                 </div>
                 @livewire('password')
             </div>
@@ -154,10 +148,10 @@
     </div>
 
     <div id="modal-profile" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header p-10">
-                    <h1 class="text-4xl font-medium leading-none">Profile</h1>
+                <div class="modal-header">
+                    <h2 class="font-medium text-base mr-auto">Profile</h2>
                 </div>
                 @livewire('profile')
             </div>
@@ -165,10 +159,10 @@
     </div>
 
     <div id="modal-pin" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header p-10">
-                    <h1 class="text-4xl font-medium leading-none">PIN</h1>
+                <div class="modal-header">
+                    <h2 class="font-medium text-base mr-auto">PIN</h1>
                 </div>
                 @livewire('pin')
             </div>

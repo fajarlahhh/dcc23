@@ -49,4 +49,39 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User::class, 'upline_id');
     }
+
+    public function balance()
+    {
+        return $this->hasmany(Balance::class)->orderBy('created_at', 'desc');
+    }
+
+    public function bonus()
+    {
+        return $this->hasmany(Bonus::class)->orderBy('created_at', 'desc');
+    }
+
+    public function withdrawal()
+    {
+        return $this->hasmany(Withdrawal::class)->orderBy('created_at', 'desc');
+    }
+
+    public function deposit()
+    {
+        return $this->hasMany(Deposit::class)->whereNotNull('from_wallet')->orderBy('created_at', 'desc');
+    }
+
+    public function waitingTransferDeposit()
+    {
+        return $this->hasOne(Deposit::class)->whereNull('from_wallet');
+    }
+
+    public function waitingProcessDeposit()
+    {
+        return $this->hasMany(Deposit::class)->whereNotNull('from_wallet')->whereNull('processed_at');
+    }
+
+    public function scopeDownline($query)
+    {
+        return $query->where('network', 'like', auth()->id() . '%')->orderBy('username', 'asc');
+    }
 }

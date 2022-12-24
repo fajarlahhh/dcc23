@@ -9,21 +9,18 @@ class Login extends Component
 {
     public $remember = false, $username, $password;
 
-    protected $rules = [
-        'username' => 'required',
-        'password' => 'required',
-    ];
-
     public function submit()
     {
-        $this->validate();
+        $this->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
 
         if (Auth::attempt(['username' => $this->username, 'password' => $this->password], $this->remember)) {
-            Auth::logoutOtherDevices($this->password, 'password');
             return redirect('/dashboard');
+        } else {
+            session()->flash('message', 'danger|Invalid credential');
         }
-        session()->flash('message', 'danger|Invalid credential');
-        return;
     }
 
     public function render()

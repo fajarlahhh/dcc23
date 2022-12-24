@@ -1,6 +1,6 @@
 <div>
     <form wire:submit.prevent="submit">
-        <div class="modal-body p-10">
+        <div class="modal-body">
             <div>
                 <label for="regular-form-1" class="form-label">Old PIN</label>
                 <input id="regular-form-1" type="text" class="form-control" wire:model.defer="oldPin" required
@@ -14,9 +14,10 @@
             <br>
             <x-alert />
         </div>
-        <div class="modal-footer p-10">
+        <div class="modal-footer">
             <div class="intro-x text-center xl:text-left">
-                <button type="submit" class="btn btn-primary w-full xl:w-32 xl:mr-3 align-top">Submit</button>
+                <button type="submit" data-dismiss="modal"
+                    class="btn btn-primary w-full xl:w-32 xl:mr-3 align-top">Submit</button>
             </div>
         </div>
     </form>

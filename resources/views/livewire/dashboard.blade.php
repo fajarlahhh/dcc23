@@ -5,5 +5,6 @@
         </h2>
     </div>
     <div class="intro-y grid grid-cols-12 gap-6 mt-5">
+        <x-alert />
     </div>
 </div>
