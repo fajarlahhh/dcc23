@@ -34,19 +34,18 @@
             <div>
                 <label for="regular-form-1" class="form-label">Amount</label>
                 <input id="regular-form-1" type="number" class="form-control" min="15"
-                    max="{{ auth()->user()->package->maximum_withdrawal }}" wire:model.defer="withdrawalAmount"
-                    autocomplete="off">
+                    max="{{ auth()->user()->package->maximum_withdrawal }}" wire:model.defer="amount" autocomplete="off"
+                    required>
             </div>
             <div class="mt-3">
                 <label>Destination</label>
                 <div class="flex flex-col sm:flex-row mt-2 mr-5">
                     <div class="form-check mr-2"> <input id="radio-switch-1" class="form-check-input" type="radio"
-                            name="withdrawalDestination" wire:model.defer="withdrawalDestination" value="balance">
+                            name="destination" wire:model.defer="destination" value="balance">
                         <label class="form-check-label" for="radio-switch-1">Balance</label>
                     </div>
                     <div class="form-check mr-2 mt-2 sm:mt-0"> <input id="radio-switch-2" class="form-check-input"
-                            type="radio" name="withdrawalDestination" wire:model.defer="withdrawalDestination"
-                            value="wallet">
+                            type="radio" name="destination" wire:model.defer="destination" value="wallet">
                         <label class="form-check-label" for="radio-switch-2">Wallet</label>
                     </div>
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Form;
 
 use App\Models\User;
+use App\Rules\PinRule;
 use Livewire\Component;
 
 class Pin extends Component
@@ -13,20 +14,15 @@ class Pin extends Component
     {
         $this->validate(
             [
-                'oldPin' => 'required',
+                'oldPin' => ['required', new PinRule()],
                 'newPin' => 'required',
             ]
         );
 
-        if ($this->oldPin == auth()->user()->pin) {
-            User::find(auth()->id())->update([
-                'pin' => $this->newPin,
-            ]);
-            return $this->redirect(request()->header('Referer'));
-        } else {
-            $this->reset(['oldPin', 'newPin']);
-            session()->flash('message', 'danger|Invalid old PIN');
-        }
+        User::find(auth()->id())->update([
+            'pin' => $this->newPin,
+        ]);
+        return $this->redirect(request()->header('Referer'));
     }
 
     public function render()

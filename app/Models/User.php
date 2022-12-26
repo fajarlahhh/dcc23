@@ -4,13 +4,14 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     protected $table = 'user';
 
@@ -50,6 +51,11 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'upline_id');
     }
 
+    public function downline()
+    {
+        return $this->hasMany(User::class, 'upline_id');
+    }
+
     public function balance()
     {
         return $this->hasmany(Balance::class)->orderBy('created_at', 'desc');
@@ -83,5 +89,15 @@ class User extends Authenticatable
     public function scopeDownline($query)
     {
         return $query->where('network', 'like', auth()->id() . '%')->orderBy('username', 'asc');
+    }
+
+    public function invalidRight()
+    {
+        return $this->hasMany(Invalidturnover::class)->where("team", "r;");
+    }
+
+    public function invalidLeft()
+    {
+        return $this->hasMany(Invalidturnover::class)->where("team", "l;");
     }
 }

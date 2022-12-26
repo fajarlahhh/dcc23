@@ -1,5 +1,5 @@
 <div>
-    <x-alert />
+    <x-info />
     <div class="intro-y grid grid-cols-12 gap-6 mt-5">
         <div class="col-span-12 lg:col-span-4 intro-y">
             <div class="intro-x flex items-center h-10">

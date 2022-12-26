@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Form;
 
 use App\Models\User;
+use App\Rules\PinRule;
 use Livewire\Component;
 
 class Profile extends Component
@@ -25,7 +26,7 @@ class Profile extends Component
             'email' => 'required',
             'phone' => 'required',
             'wallet' => 'required',
-            'pin' => 'required',
+            'pin' => ['required', 'numeric', new PinRule()],
         ]);
 
         if (auth()->user()->pin != $this->pin) {
