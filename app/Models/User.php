@@ -4,14 +4,13 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'user';
 
@@ -93,11 +92,11 @@ class User extends Authenticatable
 
     public function invalidRight()
     {
-        return $this->hasMany(Invalidturnover::class)->where("team", "r;");
+        return $this->hasMany(InvalidTurnover::class)->where("team", "r;");
     }
 
     public function invalidLeft()
     {
-        return $this->hasMany(Invalidturnover::class)->where("team", "l;");
+        return $this->hasMany(InvalidTurnover::class)->where("team", "l;");
     }
 }

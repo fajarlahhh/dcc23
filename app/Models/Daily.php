@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InvalidTurnover extends Model
+class Daily extends Model
 {
     use HasFactory;
-
-    protected $table = 'invalid_turnover';
+    protected $table = 'daily';
 }

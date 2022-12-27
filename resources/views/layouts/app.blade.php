@@ -125,6 +125,32 @@
                             <div class="side-menu__title"> Renewal </div>
                         </a>
                     </li>
+                    <hr>
+                    <li>
+                        <a href="/dailybonus" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="calendar"></i> </div>
+                            <div class="side-menu__title">
+                                Daily Bonus </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/datamember" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="command"></i> </div>
+                            <div class="side-menu__title"> Data Member </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/requestdeposit" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="codepen"></i> </div>
+                            <div class="side-menu__title"> Request Deposit </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/requestwd" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="bookmark"></i> </div>
+                            <div class="side-menu__title"> Request WD </div>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- END: Side Menu -->

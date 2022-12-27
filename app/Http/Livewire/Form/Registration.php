@@ -4,10 +4,10 @@ namespace App\Http\Livewire\Form;
 
 use App\Models\Balance;
 use App\Models\Bonus;
-use App\Models\Invalidturnover;
+use App\Models\InvalidTurnover;
 use App\Models\Package;
 use App\Models\User;
-use App\Models\Userview;
+use App\Models\UserView;
 use App\Rules\PinRule;
 use App\Rules\UsernameRule;
 use Illuminate\Support\Facades\DB;
@@ -50,7 +50,7 @@ class Registration extends Component
                 $user->save();
 
                 $idParent = str_replace(['r', 'l'], ['', ''], $user->network);
-                $dataParent = Userview::with('invalidLeft')->with('invalidRight')->select(
+                $dataParent = UserView::with('invalidLeft')->with('invalidRight')->select(
                     '*',
                     DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.activated_at is not null and left(uv.network, length(concat(user_view.id, "l;")))=concat(user_view.id, "l;") ) valid_left'),
                     DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.activated_at is not null and left(uv.network, length(concat(user_view.id, "r;")))=concat(user_view.id, "r;") ) valid_right')
@@ -147,7 +147,7 @@ class Registration extends Component
                 $invalidData = collect($invalid)->chunk(400);
 
                 foreach ($invalidData as $row) {
-                    Invalidturnover::insert($row->toArray());
+                    InvalidTurnover::insert($row->toArray());
                 }
                 $bonusData = collect($bonus)->chunk(10);
                 foreach ($bonusData as $row) {
