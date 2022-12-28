@@ -17,6 +17,7 @@ class Login extends Component
         ]);
 
         if (Auth::attempt(['username' => $this->username, 'password' => $this->password], $this->remember)) {
+            Auth::logoutOtherDevices($this->password);
             return redirect('/dashboard');
         } else {
             session()->flash('message', 'danger|Invalid credential');
