@@ -21,7 +21,7 @@ class Registration extends Component
     public function submit()
     {
         $this->validate([
-            'username' => ['required', new UsernameRule()],
+            'username' => ['required', 'regex:/^\S*$/u', new UsernameRule()],
             'pin' => ['required', 'numeric', new PinRule()],
             'team' => 'required',
             'email' => 'required|email',
