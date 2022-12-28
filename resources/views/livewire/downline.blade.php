@@ -94,7 +94,7 @@
                     </tr>
                     <tr>
                         <td class="text-center border-b dark:border-dark-5" style="width: 25%">
-                            @if ($downline1Left->first()->downline)
+                            @if ($downline1Left->first())
                                 @php
                                     $downline11Left = $downline1Left->first()->downline->filter(function ($item) {
                                         return false !== stristr($item->network, 'l');
@@ -112,11 +112,11 @@
                                         <a href="/downline?key={{ $downline11Left->first()->id }}"
                                             class="btn btn-sm btn-success">Next</a>
                                     @endif
-                                @else
-                                    &nbsp;<br>
-                                    &nbsp;<br>
-                                    &nbsp;
                                 @endif
+                            @else
+                                &nbsp;<br>
+                                &nbsp;<br>
+                                &nbsp;
                             @endif
                         </td>
                         <td class="text-center border-b dark:border-dark-5" style="width: 25%">
@@ -138,11 +138,11 @@
                                         <a href="/downline?key={{ $downline11Right->first()->id }}"
                                             class="btn btn-sm btn-success">Next</a>
                                     @endif
-                                @else
-                                    &nbsp;<br>
-                                    &nbsp;<br>
-                                    &nbsp;
                                 @endif
+                            @else
+                                &nbsp;<br>
+                                &nbsp;<br>
+                                &nbsp;
                             @endif
                         </td>
                         <td class="text-center border-b dark:border-dark-5" style="width: 25%">
@@ -164,11 +164,11 @@
                                         <a href="/downline?key={{ $downline12Left->first()->id }}"
                                             class="btn btn-sm btn-success">Next</a>
                                     @endif
-                                @else
-                                    &nbsp;<br>
-                                    &nbsp;<br>
-                                    &nbsp;
                                 @endif
+                            @else
+                                &nbsp;<br>
+                                &nbsp;<br>
+                                &nbsp;
                             @endif
                         </td>
                         <td class="text-center border-b dark:border-dark-5" style="width: 25%">
@@ -190,11 +190,11 @@
                                         <a href="/downline?key={{ $downline12Right->first()->id }}"
                                             class="btn btn-sm btn-success">Next</a>
                                     @endif
-                                @else
-                                    &nbsp;<br>
-                                    &nbsp;<br>
-                                    &nbsp;
                                 @endif
+                            @else
+                                &nbsp;<br>
+                                &nbsp;<br>
+                                &nbsp;
                             @endif
                         </td>
                     </tr>
