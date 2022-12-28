@@ -30,11 +30,57 @@
                 </a>
             </li>
             <li>
+                <a href="/balance" class="menu">
+                    <div class="menu__icon"> <i data-feather="dollar-sign"></i> </div>
+                    <div class="menu__title"> Balance </div>
+                </a>
+            </li>
+            <li>
                 <a href="/bonus" class="menu">
                     <div class="menu__icon"> <i data-feather="gift"></i> </div>
                     <div class="menu__title"> Bonus </div>
                 </a>
             </li>
+            <li>
+                <a href="/downline" class="menu">
+                    <div class="menu__icon"> <i data-feather="users"></i> </div>
+                    <div class="menu__title"> Downline </div>
+                </a>
+            </li>
+            <li>
+                <a href="/renewal" class="menu">
+                    <div class="menu__icon"> <i data-feather="refresh-cw"></i> </div>
+                    <div class="menu__title"> Renewal </div>
+                </a>
+            </li>
+            @if (auth()->user()->upline_id == null)
+                <hr>
+                <li>
+                    <a href="/dailybonus" class="menu">
+                        <div class="menu__icon"> <i data-feather="calendar"></i> </div>
+                        <div class="menu__title">
+                            Daily Bonus </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/datamember" class="menu">
+                        <div class="menu__icon"> <i data-feather="command"></i> </div>
+                        <div class="menu__title"> Data Member </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/requestdeposit" class="menu">
+                        <div class="menu__icon"> <i data-feather="codepen"></i> </div>
+                        <div class="menu__title"> Request Deposit </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/requestwd" class="menu">
+                        <div class="menu__icon"> <i data-feather="bookmark"></i> </div>
+                        <div class="menu__title"> Request WD </div>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
     <div class="top-bar-boxed border-b border-theme-2 -mt-7 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 md:pt-0 mb-12">
@@ -125,32 +171,34 @@
                             <div class="side-menu__title"> Renewal </div>
                         </a>
                     </li>
-                    <hr>
-                    <li>
-                        <a href="/dailybonus" class="side-menu">
-                            <div class="side-menu__icon"> <i data-feather="calendar"></i> </div>
-                            <div class="side-menu__title">
-                                Daily Bonus </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/datamember" class="side-menu">
-                            <div class="side-menu__icon"> <i data-feather="command"></i> </div>
-                            <div class="side-menu__title"> Data Member </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/requestdeposit" class="side-menu">
-                            <div class="side-menu__icon"> <i data-feather="codepen"></i> </div>
-                            <div class="side-menu__title"> Request Deposit </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/requestwd" class="side-menu">
-                            <div class="side-menu__icon"> <i data-feather="bookmark"></i> </div>
-                            <div class="side-menu__title"> Request WD </div>
-                        </a>
-                    </li>
+                    @if (auth()->user()->upline_id == null)
+                        <hr>
+                        <li>
+                            <a href="/dailybonus" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="calendar"></i> </div>
+                                <div class="side-menu__title">
+                                    Daily Bonus </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/datamember" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="command"></i> </div>
+                                <div class="side-menu__title"> Data Member </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/requestdeposit" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="codepen"></i> </div>
+                                <div class="side-menu__title"> Request Deposit </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/requestwd" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="bookmark"></i> </div>
+                                <div class="side-menu__title"> Request WD </div>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </nav>
             <!-- END: Side Menu -->

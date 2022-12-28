@@ -33,20 +33,11 @@ CREATE TABLE `balance` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `withdrawal_id` (`withdrawal_id`),
   CONSTRAINT `balance_ibfk_1` FOREIGN KEY (`withdrawal_id`) REFERENCES `withdrawal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of balance
 -- ----------------------------
-BEGIN;
-INSERT INTO `balance` VALUES (1, 'Top Up', 1100000.00, 1, NULL, '2022-12-21 00:00:00', '2022-12-21 00:00:00', NULL);
-INSERT INTO `balance` VALUES (20, 'Registration 1000 (asdf)', -1000.00, 1, NULL, '2022-12-26 13:46:32', '2022-12-26 13:46:32', NULL);
-INSERT INTO `balance` VALUES (21, 'Registration 10000 (tes)', -10000.00, 1, NULL, '2022-12-26 14:09:40', '2022-12-26 14:09:40', NULL);
-INSERT INTO `balance` VALUES (23, 'Registration 10000 (tesa)', -10000.00, 1, NULL, '2022-12-26 15:22:44', '2022-12-26 15:22:44', NULL);
-INSERT INTO `balance` VALUES (24, 'Registration 5000 (asdf1)', -5000.00, 1, NULL, '2022-12-26 15:23:02', '2022-12-26 15:23:02', NULL);
-INSERT INTO `balance` VALUES (25, 'Registration 2000 (tasdf)', -2000.00, 1, NULL, '2022-12-27 21:09:49', '2022-12-27 21:09:49', NULL);
-COMMIT;
-
 -- ----------------------------
 -- Table structure for bonus
 -- ----------------------------
@@ -68,24 +59,8 @@ CREATE TABLE `bonus` (
   CONSTRAINT `bonus_ibfk_1` FOREIGN KEY (`withdrawal_id`) REFERENCES `withdrawal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `bonus_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `bonus_ibfk_3` FOREIGN KEY (`daily_id`) REFERENCES `daily` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC;
 
--- ----------------------------
--- Records of bonus
--- ----------------------------
-BEGIN;
-INSERT INTO `bonus` VALUES (1, 'Daily', 100.00, NULL, 1, NULL, '2022-12-24 00:00:00', '2022-12-24 00:00:00', NULL);
-INSERT INTO `bonus` VALUES (7, 'Withdrawal to wallet', -16.00, NULL, 1, 6, '2022-12-24 13:54:41', '2022-12-24 13:54:41', NULL);
-INSERT INTO `bonus` VALUES (8, 'Sponsor 20 of 200', 20.00, NULL, 1, NULL, '2022-12-26 13:27:28', '2022-12-26 13:27:28', NULL);
-INSERT INTO `bonus` VALUES (11, 'Sponsor 100 of 1000', 100.00, NULL, 1, NULL, '2022-12-26 13:46:32', '2022-12-26 13:46:32', NULL);
-INSERT INTO `bonus` VALUES (12, 'Right pairing 10% of 200.00 by asdf', 20.00, NULL, 1, NULL, '2022-12-26 13:46:32', '2022-12-26 13:46:32', NULL);
-INSERT INTO `bonus` VALUES (13, 'Sponsor 1000 of 10000', 1000.00, NULL, 1, NULL, '2022-12-26 14:09:40', '2022-12-26 14:09:40', NULL);
-INSERT INTO `bonus` VALUES (15, 'Sponsor 1000 of 10000', 1000.00, NULL, 1, NULL, '2022-12-26 15:22:44', '2022-12-26 15:22:44', NULL);
-INSERT INTO `bonus` VALUES (16, 'Right Pairing 10% of 10,000.00 by tesa', 1000.00, NULL, 1, NULL, '2022-12-26 15:22:44', '2022-12-26 15:22:44', NULL);
-INSERT INTO `bonus` VALUES (17, 'Sponsor 500 of 5000', 500.00, NULL, 1, NULL, '2022-12-26 15:23:02', '2022-12-26 15:23:02', NULL);
-INSERT INTO `bonus` VALUES (18, 'Sponsor 200 of 2000', 200.00, NULL, 1, NULL, '2022-12-27 21:09:49', '2022-12-27 21:09:49', NULL);
-INSERT INTO `bonus` VALUES (19, 'Right Pairing 10% of 800.00 by tasdf', 80.00, NULL, 1, NULL, '2022-12-27 21:09:49', '2022-12-27 21:09:49', NULL);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for daily
@@ -99,7 +74,7 @@ CREATE TABLE `daily` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `date` (`date`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=6 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of daily
@@ -123,19 +98,7 @@ CREATE TABLE `deposit` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `deposit_ibfk_1` (`user_id`) USING BTREE,
   CONSTRAINT `deposit_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
-
--- ----------------------------
--- Records of deposit
--- ----------------------------
-BEGIN;
-INSERT INTO `deposit` VALUES (3, '0x14Bf1DC530174E64B6Aa5AD368b41EBA86b677Aa', 100.00, 1, '123123123123123123123123123', '2022-12-23 23:33:36', '2022-12-23 23:37:58', NULL);
-INSERT INTO `deposit` VALUES (6, '0x14Bf1DC530174E64B6Aa5AD368b41EBA86b677Aa', 1000.00, 1, '123123124124124', '2022-12-23 23:38:16', '2022-12-23 23:39:05', NULL);
-INSERT INTO `deposit` VALUES (7, '0x14Bf1DC530174E64B6Aa5AD368b41EBA86b677Aa', 10000.00, 1, '1231231231', '2022-12-23 23:39:23', '2022-12-23 23:39:26', NULL);
-INSERT INTO `deposit` VALUES (15, '0x14Bf1DC530174E64B6Aa5AD368b41EBA86b677Aa', 1.00, 1, '10000000000000', '2022-12-23 23:47:33', '2022-12-23 23:47:42', NULL);
-INSERT INTO `deposit` VALUES (31, '0x14Bf1DC530174E64B6Aa5AD368b41EBA86b677Aa', 100.00, 1, '123412341234', '2022-12-24 13:02:15', '2022-12-24 13:02:45', NULL);
-INSERT INTO `deposit` VALUES (34, '0x14Bf1DC530174E64B6Aa5AD368b41EBA86b677Aa', 100.00, 1, '123123123123123', '2022-12-24 13:35:22', '2022-12-24 13:35:29', NULL);
-COMMIT;
+) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Table structure for invalid_turnover
@@ -176,7 +139,7 @@ CREATE TABLE `package` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of package
@@ -224,15 +187,14 @@ CREATE TABLE `user` (
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`package_id`) REFERENCES `package` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `user_ibfk_2` FOREIGN KEY (`sponsor_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `user_ibfk_3` FOREIGN KEY (`upline_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 BEGIN;
 INSERT INTO `user` VALUES (1, 'mark', '$2y$10$QWyQeEcYXHiqAzq4.9PYV.S2yE0zz0HDV.ECzkX3Rcnh7OnhFBDbe', '1q2w3e4r5t', 'Mark Mineman', 'mark.mineman@gmail', '0x14Bf1DC530174E64B6Aa5AD368b41EBA86b677Aa', NULL, '081081081081', 1, NULL, NULL, 7, 135246, NULL, '2022-12-21 00:00:00', '2022-12-21 00:00:00', '2022-12-24 13:22:59', NULL);
-INSERT INTO `user` VALUES (38, 'Username', '$2y$10$veftPuD3HAS6BxZ9FVjCselyNLgiUxKinfSTV3gapDpZy8es25Z6.', 'Username', 'Andi Fajar Nugraha', 'andifajarlah@gmail.com', NULL, '1r;', '081803747336', 1, 1, 1, 2, NULL, NULL, '2022-12-26 13:27:28', '2022-12-26 13:27:28', '2022-12-27 21:10:34', NULL);
-INSERT INTO `user` VALUES (59, 'asdf', '$2y$10$Vt36ElEXYRvK4msE5Ep1t.iqSQkTNhHhcGp7DUDFwd4ui9x8XxnqO', 'asdf', 'Andi Fajar Nugraha', 'andifajarlah@gmail.com', NULL, '1l;', '081803747336', 1, 1, 1, 4, NULL, NULL, '2022-12-26 13:46:32', '2022-12-26 13:46:32', '2022-12-27 21:14:17', NULL);
+
 COMMIT;
 
 -- ----------------------------
@@ -253,14 +215,7 @@ CREATE TABLE `withdrawal` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `withdrawal_ibfk_1` (`user_id`) USING BTREE,
   CONSTRAINT `withdrawal_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of withdrawal
--- ----------------------------
-BEGIN;
-INSERT INTO `withdrawal` VALUES (6, '0x14Bf1DC530174E64B6Aa5AD368b41EBA86b677Aa', 14.00, 2.00, NULL, 1, NULL, '2022-12-24 13:54:41', '2022-12-24 13:54:41', NULL);
-COMMIT;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- View structure for user_view
