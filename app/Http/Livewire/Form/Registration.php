@@ -64,7 +64,7 @@ class Registration extends Component
                         'upline_id' => $q->upline_id,
                         'network' => $q->network,
                         'package' => $q->package,
-                        'position' => $q->network ? substr($q->network, -2) : null,
+                        'position' => $q->network ? substr($q->network, -1) : null,
                         'pair' => $validLeft > 0 && $validRight > 0 ? 1 : 0,
                         'valid_left' => $validLeft,
                         'valid_right' => $validRight,
@@ -95,7 +95,7 @@ class Registration extends Component
                 foreach ($dataParent as $key => $row) {
                     if (is_null($row['deleted_at']) && !is_null($row['activated_at'])) {
                         if ($row['pair'] == 1) {
-                            if (substr($network, -2) == 'l') {
+                            if (substr($network, -1) == 'l') {
                                 if ($row['valid_left'] - $this->package < $row['valid_right']) {
                                     $reward = 0;
                                     if ($row['valid_left'] > $row['valid_right']) {
@@ -111,7 +111,7 @@ class Registration extends Component
                                         'updated_at' => now(),
                                     ]);
                                 }
-                            } elseif (substr($network, -2) == 'r') {
+                            } elseif (substr($network, -1) == 'r') {
                                 if ($row['valid_right'] - $this->package < $row['valid_left']) {
                                     $reward = 0;
                                     if ($row['valid_right'] > $row['valid_left']) {
@@ -135,7 +135,7 @@ class Registration extends Component
                             'user_id' => $row['id'],
                             'downline_id' => $user->getKey,
                             'mount' => $this->package,
-                            'team' => substr($network, -2),
+                            'team' => substr($network, -1),
                             'created_at' => now(),
                             'updated_at' => now(),
                         ]);

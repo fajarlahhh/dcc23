@@ -20,6 +20,7 @@
 
     @livewireScripts
     <script src="/dist/js/app.js"></script>
+    @yield('scripts')
 </body>
 
 </html>

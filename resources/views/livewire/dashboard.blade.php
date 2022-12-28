@@ -14,7 +14,8 @@
                 </div>
                 <input type="text" class="form-control" placeholder="Price" disabled
                     value="{{ url('/registration/' . auth()->user()->username . '/l') }}">
-                <button onclick="" class="btn input-group-text">
+                <button onclick="copyUrl('{{ url('/registration/' . auth()->user()->username . '/l') }}')"
+                    class="btn input-group-text">
                     Copy
                 </button>
             </div>
@@ -25,8 +26,9 @@
                     Right Referral
                 </div>
                 <input type="text" class="form-control" placeholder="Price" disabled
-                    value="{{ url('/registration/' . auth()->user()->username . '/l') }}">
-                <button onclick="" class="btn input-group-text">
+                    value="{{ url('/registration/' . auth()->user()->username . '/r') }}">
+                <button onclick="copyUrl('{{ url('/registration/' . auth()->user()->username . '/r') }}')"
+                    class="btn input-group-text">
                     Copy
                 </button>
             </div>
@@ -34,7 +36,7 @@
     </div>
     @push('scripts')
         <script>
-            function copy(text) {
+            function copyUrl(text) {
                 navigator.clipboard.writeText(text);
                 alert("Copied the text: " + text);
             }

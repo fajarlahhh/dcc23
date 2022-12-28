@@ -10,6 +10,7 @@
     <meta name="author" content="LEFT4CODE">
     <link href="/dist/images/logo.svg" rel="shortcut icon">
     <link rel="stylesheet" href="/dist/css/app.css" />
+    @stack('styles')
     @livewireStyles
 </head>
 
@@ -223,6 +224,7 @@
     @livewireScripts
 
     <script src="/dist/js/app.js"></script>
+    @stack('scripts')
 </body>
 
 </html>
