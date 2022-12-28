@@ -84,7 +84,7 @@ class Registration extends Component
                 $parentLength = 0;
 
                 $bonus[] = [
-                    'description' => 'Sponsor ' . $user->package->sponsorship_benefits . ' of ' . $this->package,
+                    'description' => 'Sponsor ' . $user->package->sponsorship_benefits . ' of ' . $this->package . ' (' . $this->username . ')',
                     'amount' => $user->package->sponsorship_benefits,
                     'user_id' => auth()->id(),
                     'created_at' => now(),
