@@ -40,7 +40,7 @@ class Registration extends Component
                 $user->first_password = $this->username;
                 $user->name = $this->name;
                 $user->email = $this->email;
-                $user->network = $upline ? $upline->network . $upline->getKey() . $this->team : auth()->id() . $this->team;
+                $user->network = $upline ? $upline->network . $upline->getKey() . $this->team : auth()->user()->network . auth()->id() . $this->team;
                 $user->phone = $this->phone;
                 $user->reinvest = 1;
                 $user->upline_id = $upline ? $upline->getKey() : auth()->id();
