@@ -49,6 +49,7 @@
                 </form>
                 <br>
                 <x-alert />
+                <x-info />
             </div>
         </div>
     </div>
