@@ -2,27 +2,23 @@
     <form wire:submit.prevent="submit">
         <div class="modal-body">
             <div>
-                <label for="regular-form-1" class="form-label">Username</label>
-                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="username" required
-                    autocomplete="off">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" wire:model.defer="username" required autocomplete="off">
             </div>
             <div class="mt-3">
-                <label for="regular-form-1" class="form-label">Name</label>
-                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="name" required
-                    autocomplete="off">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" wire:model.defer="name" required autocomplete="off">
             </div>
             <div class="mt-3">
-                <label for="regular-form-1" class="form-label">Phone</label>
-                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="phone" required
-                    autocomplete="off">
+                <label class="form-label">Phone</label>
+                <input type="text" class="form-control" wire:model.defer="phone" required autocomplete="off">
             </div>
             <div class="mt-3">
-                <label for="regular-form-1" class="form-label">Email</label>
-                <input id="regular-form-1" type="email" class="form-control" wire:model.defer="email" required
-                    autocomplete="off">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" wire:model.defer="email" required autocomplete="off">
             </div>
             <div class="mt-3">
-                <label for="regular-form-1" class="form-label">Package</label>
+                <label class="form-label">Package</label>
                 <select class="form-select mt-2 sm:mr-2" wire:model.defer="package" aria-label="Default select example">
                     <option selected hidden>-- Select Package --</option>
                     @foreach (\App\Models\Package::all() as $row)
@@ -46,9 +42,8 @@
             </div>
             <div class="alert alert-secondary show mt-5" role="alert">
                 <div>
-                    <label for="regular-form-1" class="form-label">PIN</label>
-                    <input id="regular-form-1" type="text" class="form-control" wire:model.defer="pin" required
-                        autocomplete="off">
+                    <label class="form-label">PIN</label>
+                    <input type="text" class="form-control" wire:model.defer="pin" required autocomplete="off">
                 </div>
             </div>
             <x-alert />

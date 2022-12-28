@@ -32,8 +32,8 @@
                 </small>
             </div>
             <div>
-                <label for="regular-form-1" class="form-label">Amount</label>
-                <input id="regular-form-1" type="number" class="form-control" min="15"
+                <label class="form-label">Amount</label>
+                <input type="number" class="form-control" min="15"
                     max="{{ auth()->user()->package->maximum_withdrawal }}" wire:model.defer="amount" autocomplete="off"
                     required>
             </div>
@@ -52,9 +52,8 @@
             </div>
             <div class="alert alert-secondary show mt-5" role="alert">
                 <div>
-                    <label for="regular-form-1" class="form-label">PIN</label>
-                    <input id="regular-form-1" type="text" class="form-control" wire:model.defer="pin" required
-                        autocomplete="off">
+                    <label class="form-label">PIN</label>
+                    <input type="text" class="form-control" wire:model.defer="pin" required autocomplete="off">
                 </div>
             </div>
             <x-alert />

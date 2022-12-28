@@ -2,41 +2,36 @@
     <form wire:submit.prevent="submit">
         <div class="modal-body">
             <div>
-                <label for="regular-form-1" class="form-label">Username</label>
-                <input id="regular-form-1" type="text" class="form-control" value="{{ auth()->user()->username }}"
-                    disabled autocomplete="off">
-            </div>
-            <div class="mt-3">
-                <label for="regular-form-1" class="form-label">Name</label>
-                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="name" required
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" value="{{ auth()->user()->username }}" disabled
                     autocomplete="off">
             </div>
             <div class="mt-3">
-                <label for="regular-form-1" class="form-label">Email</label>
-                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="email" required
-                    autocomplete="off">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" wire:model.defer="name" required autocomplete="off">
             </div>
             <div class="mt-3">
-                <label for="regular-form-1" class="form-label">Phone</label>
-                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="phone" required
-                    autocomplete="off">
+                <label class="form-label">Email</label>
+                <input type="text" class="form-control" wire:model.defer="email" required autocomplete="off">
             </div>
             <div class="mt-3">
-                <label for="regular-form-1" class="form-label">Upline</label>
-                <input id="regular-form-1" type="text" class="form-control"
+                <label class="form-label">Phone</label>
+                <input type="text" class="form-control" wire:model.defer="phone" required autocomplete="off">
+            </div>
+            <div class="mt-3">
+                <label class="form-label">Upline</label>
+                <input type="text" class="form-control"
                     value="{{ auth()->user()->upline ? auth()->user()->upline->name : '' }}" disabled
                     autocomplete="off">
             </div>
             <div class="mt-3">
-                <label for="regular-form-1" class="form-label">USDT Wallet <small>BEP-20</small></label>
-                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="wallet" required
-                    autocomplete="off">
+                <label class="form-label">USDT Wallet <small>BEP-20</small></label>
+                <input type="text" class="form-control" wire:model.defer="wallet" required autocomplete="off">
             </div>
             <div class="alert alert-secondary show mt-5" role="alert">
                 <div>
-                    <label for="regular-form-1" class="form-label">PIN</label>
-                    <input id="regular-form-1" type="text" class="form-control" wire:model.defer="pin" required
-                        autocomplete="off">
+                    <label class="form-label">PIN</label>
+                    <input type="text" class="form-control" wire:model.defer="pin" required autocomplete="off">
                 </div>
             </div>
             <x-alert />

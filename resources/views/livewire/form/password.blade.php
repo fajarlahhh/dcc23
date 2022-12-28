@@ -2,14 +2,12 @@
     <form wire:submit.prevent="submit">
         <div class="modal-body">
             <div>
-                <label for="regular-form-1" class="form-label">Old Password</label>
-                <input id="regular-form-1" type="password" class="form-control" wire:model.defer="oldPassword" required
-                    autocomplete="off">
+                <label class="form-label">Old Password</label>
+                <input type="password" class="form-control" wire:model.defer="oldPassword" required autocomplete="off">
             </div>
             <div class="mt-3">
-                <label for="regular-form-1" class="form-label">New Password</label>
-                <input id="regular-form-1" type="password" class="form-control" wire:model.defer="newPassword" required
-                    autocomplete="off">
+                <label class="form-label">New Password</label>
+                <input type="password" class="form-control" wire:model.defer="newPassword" required autocomplete="off">
             </div>
             <x-alert />
         </div>

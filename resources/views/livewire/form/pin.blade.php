@@ -2,14 +2,12 @@
     <form wire:submit.prevent="submit">
         <div class="modal-body">
             <div>
-                <label for="regular-form-1" class="form-label">Old PIN</label>
-                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="oldPin" required
-                    autocomplete="off">
+                <label class="form-label">Old PIN</label>
+                <input type="text" class="form-control" wire:model.defer="oldPin" required autocomplete="off">
             </div>
             <div class="mt-3">
-                <label for="regular-form-1" class="form-label">New PIN</label>
-                <input id="regular-form-1" type="text" class="form-control" wire:model.defer="newPin" required
-                    autocomplete="off">
+                <label class="form-label">New PIN</label>
+                <input type="text" class="form-control" wire:model.defer="newPin" required autocomplete="off">
             </div>
             <x-alert />
         </div>
