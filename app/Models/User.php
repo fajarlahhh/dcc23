@@ -92,11 +92,11 @@ class User extends Authenticatable
 
     public function invalidRight()
     {
-        return $this->hasMany(InvalidTurnover::class)->where("team", "r;");
+        return $this->hasMany(InvalidTurnover::class)->where("team", "r");
     }
 
     public function invalidLeft()
     {
-        return $this->hasMany(InvalidTurnover::class)->where("team", "l;");
+        return $this->hasMany(InvalidTurnover::class)->where("team", "l");
     }
 }

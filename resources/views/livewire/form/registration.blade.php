@@ -35,11 +35,11 @@
                 <div class="flex flex-col sm:flex-row mt-2 mr-5">
                     <div class="form-check mr-2">
                         <input id="radio-switch-1" class="form-check-input" type="radio" name="team"
-                            wire:model.defer="team" value="l;">
+                            wire:model.defer="team" value="l">
                         <label class="form-check-label" for="radio-switch-1">Left</label>
                     </div>
                     <div class="form-check mr-2 mt-2 sm:mt-0"> <input id="radio-switch-2" class="form-check-input"
-                            type="radio" name="team" wire:model.defer="team" value="r;">
+                            type="radio" name="team" wire:model.defer="team" value="r">
                         <label class="form-check-label" for="radio-switch-2">Right</label>
                     </div>
                 </div>

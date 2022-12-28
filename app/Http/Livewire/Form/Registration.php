@@ -16,7 +16,7 @@ use Livewire\Component;
 
 class Registration extends Component
 {
-    public $pin, $username, $name, $team = 'l;', $password, $package, $email, $phone;
+    public $pin, $username, $name, $team = 'l', $password, $package, $email, $phone;
 
     public function submit()
     {
@@ -49,11 +49,11 @@ class Registration extends Component
                 $user->activated_at = now();
                 $user->save();
 
-                $idParent = str_replace(['r', 'l'], ['', ''], $user->network);
+                $idParent = str_replace(['r', 'l'], [';', ';'], $user->network);
                 $dataParent = UserView::with('invalidLeft')->with('invalidRight')->select(
                     '*',
-                    DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.activated_at is not null and left(uv.network, length(concat(user_view.id, "l;")))=concat(user_view.id, "l;") ) valid_left'),
-                    DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.activated_at is not null and left(uv.network, length(concat(user_view.id, "r;")))=concat(user_view.id, "r;") ) valid_right')
+                    DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.activated_at is not null and left(uv.network, length(concat(user_view.id, "l")))=concat(user_view.id, "l") ) valid_left'),
+                    DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.activated_at is not null and left(uv.network, length(concat(user_view.id, "r")))=concat(user_view.id, "r") ) valid_right')
                 )->with('package')->whereIn('id', explode(';', $idParent))->orderBy('id', 'desc')->get()->map(function ($q) {
                     $validLeft = (int) $q->valid_left - $q->invalidLeft->sum('amount');
                     $validRight = (int) $q->valid_right - $q->invalidRight->sum('amount');
@@ -95,7 +95,7 @@ class Registration extends Component
                 foreach ($dataParent as $key => $row) {
                     if (is_null($row['deleted_at']) && !is_null($row['activated_at'])) {
                         if ($row['pair'] == 1) {
-                            if (substr($network, -2) == 'l;') {
+                            if (substr($network, -2) == 'l') {
                                 if ($row['valid_left'] - $this->package < $row['valid_right']) {
                                     $reward = 0;
                                     if ($row['valid_left'] > $row['valid_right']) {
@@ -111,7 +111,7 @@ class Registration extends Component
                                         'updated_at' => now(),
                                     ]);
                                 }
-                            } elseif (substr($network, -2) == 'r;') {
+                            } elseif (substr($network, -2) == 'r') {
                                 if ($row['valid_right'] - $this->package < $row['valid_left']) {
                                     $reward = 0;
                                     if ($row['valid_right'] > $row['valid_left']) {
