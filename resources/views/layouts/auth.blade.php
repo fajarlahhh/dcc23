@@ -14,6 +14,7 @@
 </head>
 
 <body class="login">
+
     <div class="container sm:px-10">
         @yield('content')
     </div>

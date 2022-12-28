@@ -205,6 +205,10 @@
             <!-- END: Side Menu -->
             <!-- BEGIN: Content -->
             <div class="content">
+                @if (!auth()->user()->pin)
+                    @livewire('form.createpin')
+                @endif
+                @livewire('form.createpassword')
                 {{ $slot }}
             </div>
             <!-- END: Content -->
