@@ -28,12 +28,12 @@ class UserView extends Model
 
     public function invalidRight()
     {
-        return $this->hasMany(Invalidturnover::class, 'user_id')->where("team", "r;");
+        return $this->hasMany(InvalidTurnover::class, 'user_id')->where("team", "r;");
     }
 
     public function invalidLeft()
     {
-        return $this->hasMany(Invalidturnover::class, 'user_id')->where("team", "l;");
+        return $this->hasMany(InvalidTurnover::class, 'user_id')->where("team", "l;");
     }
 
     public function upline()
