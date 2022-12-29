@@ -56,7 +56,7 @@
                         <td colspan="2" class="text-center border-b dark:border-dark-5" style="width: 50%">
                             @php
                                 $downline1Left = $network->downline->filter(function ($item) {
-                                    return false !== stristr($item->network, 'l');
+                                    return false !== stristr(substr($item->network, -1), 'l');
                                 });
                             @endphp
                             @if ($downline1Left->count() > 0)
@@ -75,7 +75,7 @@
                         <td colspan="2" class="text-center border-b dark:border-dark-5" style="width: 50%">
                             @php
                                 $downline1Right = $network->downline->filter(function ($item) {
-                                    return false !== stristr($item->network, 'r');
+                                    return false !== stristr(substr($item->network, -1), 'r');
                                 });
                             @endphp
                             @if ($downline1Right->count() > 0)
@@ -97,7 +97,7 @@
                             @if ($downline1Left->first())
                                 @php
                                     $downline11Left = $downline1Left->first()->downline->filter(function ($item) {
-                                        return false !== stristr($item->network, 'l');
+                                        return false !== stristr(substr($item->network, -1), 'l');
                                     });
                                 @endphp
                                 @if ($downline11Left->count() > 0)
@@ -123,7 +123,7 @@
                             @if ($downline1Left->first())
                                 @php
                                     $downline11Right = $downline1Left->first()->downline->filter(function ($item) {
-                                        return false !== stristr($item->network, 'r');
+                                        return false !== stristr(substr($item->network, -1), 'r');
                                     });
                                 @endphp
                                 @if ($downline11Right->count() > 0)
@@ -149,7 +149,7 @@
                             @if ($downline1Right->first())
                                 @php
                                     $downline12Left = $downline1Right->first()->downline->filter(function ($item) {
-                                        return false !== stristr($item->network, 'l');
+                                        return false !== stristr(substr($item->network, -1), 'l');
                                     });
                                 @endphp
                                 @if ($downline12Left->count() > 0)
@@ -175,7 +175,7 @@
                             @if ($downline1Right->first())
                                 @php
                                     $downline12Right = $downline1Right->first()->downline->filter(function ($item) {
-                                        return false !== stristr($item->network, 'r');
+                                        return false !== stristr(substr($item->network, -1), 'r');
                                     });
                                 @endphp
                                 @if ($downline12Right->count() > 0)
