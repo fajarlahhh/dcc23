@@ -17,7 +17,7 @@ class Active
     public function handle(Request $request, Closure $next)
     {
         if (!auth()->user()->activated_at) {
-            return abort(403, 'Unauthorized action.');
+            return redirect('/activation');
         }
         return $next($request);
     }
