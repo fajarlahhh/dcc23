@@ -65,7 +65,7 @@
                                             <a href="javascript:;" class="btn btn-secondary"
                                                 wire:click="delete">Delete</a>
                                             <a href="javascript:;" class="btn btn-secondary"
-                                                wire:click="setDelete">Batal</a>
+                                                wire:click="setDelete">Cancel</a>
                                         @else
                                             <a href="javascript:;" class="btn btn-secondary"
                                                 wire:click="setDelete({{ $row->id }})">Delete</a>

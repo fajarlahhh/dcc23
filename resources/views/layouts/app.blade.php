@@ -18,7 +18,7 @@
     <div class="mobile-menu md:hidden">
         <div class="mobile-menu-bar">
             <a href="" class="flex mr-auto">
-                <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="dist/images/logo.svg">
+                <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="/dist/images/logo.svg">
             </a>
             <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2"
                     class="w-8 h-8 text-white transform -rotate-90"></i> </a>
@@ -70,6 +70,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/requestactivation" class="menu">
+                        <div class="menu__icon"> <i data-feather="star"></i> </div>
+                        <div class="menu__title"> Request Activation </div>
+                    </a>
+                </li>
+                <li>
                     <a href="/requestdeposit" class="menu">
                         <div class="menu__icon"> <i data-feather="codepen"></i> </div>
                         <div class="menu__title"> Request Deposit </div>
@@ -88,7 +94,7 @@
         <div class="h-full flex items-center">
             <!-- BEGIN: Logo -->
             <a href="" class="-intro-x hidden md:flex">
-                <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="dist/images/logo.svg">
+                <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="/dist/images/logo.svg">
                 <span class="text-white text-lg ml-3"> Vers<span class="font-medium">21</span> </span>
             </a>
             <!-- END: Logo -->
@@ -100,7 +106,7 @@
             <div class="intro-x dropdown w-8 h-8">
                 <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110"
                     role="button" aria-expanded="false">
-                    <img alt="Icewall Tailwind HTML Admin Template" src="dist/images/profile-4.jpg">
+                    <img alt="Icewall Tailwind HTML Admin Template" src="/dist/images/profile-4.jpg">
                 </div>
                 <div class="dropdown-menu w-56">
                     <div class="dropdown-menu__content box bg-theme-11 dark:bg-dark-6 text-white">
@@ -185,6 +191,12 @@
                             <a href="/datamember" class="side-menu">
                                 <div class="side-menu__icon"> <i data-feather="command"></i> </div>
                                 <div class="side-menu__title"> Data Member </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/requestactivation" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="star"></i> </div>
+                                <div class="side-menu__title"> Request Activation </div>
                             </a>
                         </li>
                         <li>

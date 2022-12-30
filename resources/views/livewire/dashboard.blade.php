@@ -37,8 +37,17 @@
     @push('scripts')
         <script>
             function copyUrl(text) {
-                navigator.clipboard.writeText(text);
-                alert("Copied the text: " + text);
+                copyToClipboard(text);
+                alert('Text copied');
+            }
+
+            function copyToClipboard(text) {
+                var sampleTextarea = document.createElement("textarea");
+                document.body.appendChild(sampleTextarea);
+                sampleTextarea.value = text; //save main text in it
+                sampleTextarea.select(); //select textarea contenrs
+                document.execCommand("copy");
+                document.body.removeChild(sampleTextarea);
             }
         </script>
     @endpush

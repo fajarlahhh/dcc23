@@ -96,20 +96,20 @@
                         <td class="text-center border-b dark:border-dark-5" style="width: 25%">
                             @if ($downline1Left->first())
                                 @php
-                                    $downline11Left = $downline1Left->first()->downline->filter(function ($item) {
+                                    $downline2Left = $downline1Left->first()->downline->filter(function ($item) {
                                         return false !== stristr(substr($item->network, -1), 'l');
                                     });
                                 @endphp
-                                @if ($downline11Left->count() > 0)
-                                    {{ $downline11Left->first()->username }}<br>
-                                    <small>{{ $downline11Left->first()->name }}</small>
+                                @if ($downline2Left->count() > 0)
+                                    {{ $downline2Left->first()->username }}<br>
+                                    <small>{{ $downline2Left->first()->name }}</small>
                                     <br>
-                                    {{ number_format((int) $downline11Left->first()->valid_left - (int) $downline11Left->first()->invalidLeft->sum('amount')) }}
+                                    {{ number_format((int) $downline2Left->first()->valid_left - (int) $downline2Left->first()->invalidLeft->sum('amount')) }}
                                     |
-                                    {{ number_format((int) $downline11Left->first()->valid_right - (int) $downline11Left->first()->invalidRight->sum('amount')) }}
+                                    {{ number_format((int) $downline2Left->first()->valid_right - (int) $downline2Left->first()->invalidRight->sum('amount')) }}
                                     <br>
-                                    @if ($downline11Left->first()->downline->count() > 0)
-                                        <a href="/downline?key={{ $downline11Left->first()->id }}"
+                                    @if ($downline2Left->first()->downline->count() > 0)
+                                        <a href="/downline?key={{ $downline2Left->first()->id }}"
                                             class="btn btn-sm btn-success">Next</a>
                                     @endif
                                 @endif
@@ -122,20 +122,20 @@
                         <td class="text-center border-b dark:border-dark-5" style="width: 25%">
                             @if ($downline1Left->first())
                                 @php
-                                    $downline11Right = $downline1Left->first()->downline->filter(function ($item) {
+                                    $downline2Right = $downline1Left->first()->downline->filter(function ($item) {
                                         return false !== stristr(substr($item->network, -1), 'r');
                                     });
                                 @endphp
-                                @if ($downline11Right->count() > 0)
-                                    {{ $downline11Right->first()->username }}<br>
-                                    <small>{{ $downline11Right->first()->name }}</small>
+                                @if ($downline2Right->count() > 0)
+                                    {{ $downline2Right->first()->username }}<br>
+                                    <small>{{ $downline2Right->first()->name }}</small>
                                     <br>
-                                    {{ number_format((int) $downline11Right->first()->valid_left - (int) $downline11Right->first()->invalidLeft->sum('amount')) }}
+                                    {{ number_format((int) $downline2Right->first()->valid_left - (int) $downline2Right->first()->invalidLeft->sum('amount')) }}
                                     |
-                                    {{ number_format((int) $downline11Right->first()->valid_right - (int) $downline11Right->first()->invalidRight->sum('amount')) }}
+                                    {{ number_format((int) $downline2Right->first()->valid_right - (int) $downline2Right->first()->invalidRight->sum('amount')) }}
                                     <br>
-                                    @if ($downline11Right->first()->downline->count() > 0)
-                                        <a href="/downline?key={{ $downline11Right->first()->id }}"
+                                    @if ($downline2Right->first()->downline->count() > 0)
+                                        <a href="/downline?key={{ $downline2Right->first()->id }}"
                                             class="btn btn-sm btn-success">Next</a>
                                     @endif
                                 @endif

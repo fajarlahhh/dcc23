@@ -50,6 +50,11 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'upline_id');
     }
 
+    public function sponsor()
+    {
+        return $this->belongsTo(User::class, 'sponsor_id');
+    }
+
     public function downline()
     {
         return $this->hasMany(User::class, 'upline_id');

@@ -67,12 +67,12 @@
                                                 <a href="javascript:;" class="btn btn-secondary"
                                                     wire:click="resetPassword">Reset</a>
                                                 <a href="javascript:;" class="btn btn-secondary"
-                                                    wire:click="setReset">Batal</a>
+                                                    wire:click="setReset">Cancel</a>
                                             @elseif ($delete == $row->id)
                                                 <a href="javascript:;" class="btn btn-secondary"
                                                     wire:click="delete">Delete</a>
                                                 <a href="javascript:;" class="btn btn-secondary"
-                                                    wire:click="setDelete">Batal</a>
+                                                    wire:click="setDelete">Cancel</a>
                                             @else
                                                 <a href="javascript:;" class="btn btn-secondary"
                                                     wire:click="setReset({{ $row->id }})">Reset
@@ -85,7 +85,7 @@
                                                 <a href="javascript:;" class="btn btn-secondary"
                                                     wire:click="restore">Restore</a>
                                                 <a href="javascript:;" class="btn btn-secondary"
-                                                    wire:click="setRestore">Batal</a>
+                                                    wire:click="setRestore">Cancel</a>
                                             @else
                                                 <a href="javascript:;" class="btn btn-secondary"
                                                     wire:click="setRestore({{ $row->id }})">Restore</a>

@@ -40,6 +40,7 @@ class Registration extends Component
                 $user->first_password = $this->username;
                 $user->name = $this->name;
                 $user->email = $this->email;
+                $user->team = $this->team;
                 $user->network = $upline ? $upline->network . $upline->getKey() . $this->team : auth()->user()->network . auth()->id() . $this->team;
                 $user->phone = $this->phone;
                 $user->reinvest = 1;
@@ -134,7 +135,7 @@ class Registration extends Component
                         array_push($invalid, [
                             'user_id' => $row['id'],
                             'downline_id' => $user->getKey,
-                            'mount' => $this->package,
+                            'amount' => $this->package,
                             'team' => substr($network, -1),
                             'created_at' => now(),
                             'updated_at' => now(),
