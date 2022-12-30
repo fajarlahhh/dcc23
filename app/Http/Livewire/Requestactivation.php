@@ -67,7 +67,7 @@ class Requestactivation extends Component
             $parentLength = 0;
 
             $bonus[] = [
-                'description' => 'Sponsor ' . $user->package->sponsorship_benefits . ' of ' . $user->package . ' (' . $user->username . ')',
+                'description' => 'Sponsor ' . $user->package->sponsorship_benefits . ' of ' . $user->package->value . ' (' . $user->username . ')',
                 'amount' => $user->package->sponsorship_benefits,
                 'user_id' => auth()->id(),
                 'created_at' => now(),
