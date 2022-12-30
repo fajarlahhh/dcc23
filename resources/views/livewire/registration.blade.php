@@ -57,8 +57,9 @@
                     <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
                         <button type="submit"
                             class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Register</button>
-                        <button class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top">Sign
-                            in</button>
+                        <a href="/login"
+                            class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top">Sign
+                            in</a>
                     </div>
                 </form>
                 <br>
