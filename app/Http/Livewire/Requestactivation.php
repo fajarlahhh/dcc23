@@ -33,7 +33,7 @@ class Requestactivation extends Component
 
             $user->network = $upline ? $upline->network . $upline->getKey() . $user->team : $user->sponsor->network . $user->sponsor_id . $user->team;
             $user->reinvest = 1;
-            $user->upline_id = $upline ? $upline->getKey() : 1;
+            $user->upline_id = $upline ? $upline->getKey() : $user->sponsor_id;
             $user->activated_at = now();
             $user->processed_at = now();
             $user->save();
