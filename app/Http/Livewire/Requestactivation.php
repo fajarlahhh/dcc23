@@ -31,7 +31,7 @@ class Requestactivation extends Component
             $user = User::findOrFail($this->activate);
             $upline = User::where('network', 'like', $user->sponsor->network . $user->sponsor_id . $user->team . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
 
-            $user->network = $upline->network . $upline->getKey() . $user->team;
+            $user->network = $upline ? $upline->network . $upline->getKey() . $user->team : $user->sponsor->network . $user->sponsor_id . $user->team;
             $user->reinvest = 1;
             $user->upline_id = $upline ? $upline->getKey() : 1;
             $user->activated_at = now();
