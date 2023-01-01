@@ -6,12 +6,13 @@ use App\Models\Balance;
 use App\Models\Bonus;
 use App\Models\Withdrawal as ModelsWithdrawal;
 use App\Rules\PinRule;
+use App\Rules\WalletRule;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Withdrawal extends Component
 {
-    public $amount, $destination = 'balance', $pin, $bonusTotal, $minWd, $maxWd, $benefit;
+    public $amount, $destination = 'balance', $pin, $bonusTotal, $minWd, $maxWd, $benefit, $wallet;
 
     public function mount()
     {
@@ -23,15 +24,28 @@ class Withdrawal extends Component
 
     public function withdrawal()
     {
-        $this->validate([
-            'amount' => [
-                'required',
-                'numeric',
-                'min:' . $this->minWd,
-                'max:' . ($this->bonusTotal > $this->maxWd ? ($this->maxWd > $this->benefit ? $this->benefit : $this->maxWd) : $this->bonusTotal)],
-            'destination' => 'required',
-            'pin' => ['required', 'numeric', new PinRule()],
-        ]);
+        if ($this->destination == 'balance') {
+            $this->validate([
+                'amount' => [
+                    'required',
+                    'numeric',
+                    'min:' . $this->minWd,
+                    'max:' . ($this->bonusTotal > $this->maxWd ? ($this->maxWd > $this->benefit ? $this->benefit : $this->maxWd) : $this->bonusTotal)],
+                'destination' => 'required',
+                'pin' => ['required', 'numeric', new PinRule()],
+            ]);
+        } else {
+            $this->validate([
+                'amount' => [
+                    'required',
+                    'numeric',
+                    'min:' . $this->minWd,
+                    'max:' . ($this->bonusTotal > $this->maxWd ? ($this->maxWd > $this->benefit ? $this->benefit : $this->maxWd) : $this->bonusTotal)],
+                'destination' => 'required',
+                'wallet' => new WalletRule(),
+                'pin' => ['required', 'numeric', new PinRule()],
+            ]);
+        }
 
         try {
             $wd = true;
@@ -47,7 +61,11 @@ class Withdrawal extends Component
                     $fee = auth()->user()->package->fee_withdrawal;
 
                     $withdrawal = new ModelsWithdrawal();
-                    $withdrawal->to_wallet = auth()->user()->wallet;
+                    if ($this->destination == 'wallet') {
+                        $withdrawal->to_wallet = auth()->user()->wallet;
+                    } else {
+                        $withdrawal->to_wallet = 'balance';
+                    }
                     $withdrawal->amount = $this->amount - $fee;
                     $withdrawal->fee = $fee;
                     $withdrawal->save();

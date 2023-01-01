@@ -11,6 +11,8 @@ class Requestwd extends Component
     use WithPagination;
     public $status = 1, $year, $month, $process, $txid;
 
+    protected $queryString = ['status', 'year', 'month'];
+
     public function setProcess($process = null)
     {
         $this->process = $process;
@@ -33,8 +35,8 @@ class Requestwd extends Component
     public function render()
     {
         return view('livewire.requestwd', [
-            'i' => ($this->page - 1) * 10,
-            'data' => Withdrawal::with('user')->when($this->status == 1, fn($q) => $q->whereNull('processed_at'))->when($this->status == 2, fn($q) => $q->where('processed_at', 'like', $this->year . '-' . $this->month . '%'))->paginate(10),
+            // 'i' => ($this->page - 1) * 10,
+            'data' => Withdrawal::with('user')->when($this->status == 1, fn($q) => $q->whereNull('processed_at'))->when($this->status == 2, fn($q) => $q->where('processed_at', 'like', $this->year . '-' . $this->month . '%'))->get(),
         ]);
     }
 }

@@ -6,6 +6,25 @@
                     <h2 class="font-medium text-base mr-auto">
                         Request WD
                     </h2>
+                    <div class="w-full sm:w-auto flex items-center sm:ml-auto mt-3 sm:mt-0">
+                        @if ($status == 2)
+                        <select class="form-select mt-2 sm:mr-2" aria-label="Default select example" wire:model="month">
+                            @for ($i = 1; $i <= 12; $i++)
+                                <option value="{{ sprintf('%02s', $i) }}">
+                                {{ DateTime::createFromFormat('!m', $i)->format('F') }}</option>
+                            @endfor
+                        </select>
+                        <select class="form-select mt-2 sm:mr-2" aria-label="Default select example" wire:model="year">
+                            @for ($i = 2023; $i <= date('Y'); $i++)
+                              <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                        @endif
+                        <select class="form-select mt-2 sm:mr-2" aria-label="Default select example" wire:model="status">
+                            <option value="1">Waiting</option>
+                            <option value="2">Processed</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="p-5 overflow-auto">
                     <table class="table">
@@ -16,14 +35,16 @@
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Name</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">To Wallet</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Amount</th>
+                                @if ($status == 1)
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap"></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $row)
+                            @foreach ($data as $key => $row)
                                 <tr>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
-                                        {{ ++$i }}</td>
+                                        {{ ++$key }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->user->username }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
@@ -31,9 +52,10 @@
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->to_wallet }}
                                     </td>
-                                    <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
+                                    <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-right">
                                         {{ number_format($row->amount) }}
                                     </td>
+                                    @if ($status == 1)
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-center">
                                         @if ($process == $row->id)
                                             <form wire:submit.prevent="submit">
@@ -49,18 +71,25 @@
                                             </a>
                                         @endif
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="4" class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-right">Total</th>
+                                <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-right">{{number_format($data->sum('amount'))}}</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
         <div class="intro-y col-span-6 lg:col-span-6">
-            {{ $data->links() }}
+            {{-- {{ $data->links() }} --}}
         </div>
         <div class="intro-y col-span-6 lg:col-span-6 text-right">
-            <button type="button" class="btn btn-secondary" disabled>Total Data : {{ $data->total() }}</button>
+            <button type="button" class="btn btn-secondary" disabled>Total Data : {{ $data->count() }}</button>
         </div>
     </div>
 </div>

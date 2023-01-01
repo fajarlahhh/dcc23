@@ -108,7 +108,12 @@
                         </div>
                         <div class="ml-4 mr-auto">
                             <div class="font-medium">To :
+                                @if ($row->to_wallet == 'balance')
+                                    Balance
+                                @else
+                                
                                 {{ substr($row->to_wallet, 0, 4) . '....' . substr($row->to_wallet, -4) }}
+                                @endif
                             </div>
                             <div class="text-gray-600 text-xs mt-0.5">
                                 {{ \Carbon\Carbon::parse($row->created_at)->diffForHumans() }}</div>
