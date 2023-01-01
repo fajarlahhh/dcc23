@@ -220,6 +220,9 @@
                 @if (!auth()->user()->pin)
                     @livewire('form.createpin')
                 @endif
+                @if (!auth()->user()->wallet)
+                    @livewire('form.createwallet')
+                @endif
                 @livewire('form.createpassword')
                 {{ $slot }}
             </div>
