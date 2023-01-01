@@ -11,4 +11,9 @@ class Deposit extends Model
     use HasFactory, UserTrait;
 
     protected $table = 'deposit';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -11,4 +11,9 @@ class Withdrawal extends Model
     use HasFactory, UserTrait;
 
     protected $table = 'withdrawal';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
