@@ -71,6 +71,11 @@ class User extends Authenticatable
         return $this->hasmany(Bonus::class)->orderBy('created_at', 'desc');
     }
 
+    public function availablePackage()
+    {
+        return $this->package()->first()->benefit - $this->bonus()->where('amount', '>', 0)->sum('amount');
+    }
+
     public function withdrawal()
     {
         return $this->hasmany(Withdrawal::class)->orderBy('created_at', 'desc');

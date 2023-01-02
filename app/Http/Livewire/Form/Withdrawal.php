@@ -19,7 +19,7 @@ class Withdrawal extends Component
         $this->bonusTotal = auth()->user()->bonus->sum('amount');
         $this->minWd = auth()->user()->package->minimum_withdrawal;
         $this->maxWd = auth()->user()->package->maximum_withdrawal;
-        $this->benefit = auth()->user()->package->benefit;
+        $this->benefit = auth()->user()->package->benefit + auth()->user()->bonus->where('amount', '<', 0)->sum('amount');
     }
 
     public function withdrawal()

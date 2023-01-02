@@ -21,6 +21,7 @@ class Createpin extends Component
         ]);
         return $this->redirect(request()->header('Referer'));
     }
+
     public function render()
     {
         return view('livewire.form.createpin');

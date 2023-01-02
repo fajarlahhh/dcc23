@@ -25,6 +25,7 @@ class Downline extends Component
             DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.activated_at is not null and left(uv.network, length(concat(user_view.network, user_view.id, "r")))=concat(user_view.network, user_view.id, "r") ) valid_right')
         )->where('id', $this->key)->first();
     }
+
     public function render()
     {
         return view('livewire.downline');

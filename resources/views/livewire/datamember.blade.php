@@ -19,6 +19,7 @@
                             <tr>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">#</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Username</th>
+                                <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">First Password</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Name</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Wallet</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Package</th>
@@ -41,6 +42,8 @@
                                         {{ ++$i }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->username }}</td>
+                                    <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
+                                        {{ $row->first_password }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->name }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
