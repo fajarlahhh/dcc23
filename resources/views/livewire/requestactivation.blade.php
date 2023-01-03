@@ -17,6 +17,7 @@
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Sponsor</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">From Wallet</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">To Wallet</th>
+                                <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Type</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Package</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap"></th>
                             </tr>
@@ -27,11 +28,11 @@
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ ++$i }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
-                                        {{ $row->username }}</td>
+                                        {{ $row->user->username }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
-                                        {{ $row->name }}</td>
+                                        {{ $row->user->name }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
-                                        {{ $row->sponsor->username }}
+                                        {{ $row->user->sponsor->username }}
                                     </td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->from_wallet }}
@@ -40,15 +41,17 @@
                                         {{ $row->to_wallet }}
                                     </td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
-                                        {{ $row->package->value }}</td>
+                                        {{ $row->registration == 1 ? 'New' : 'Reinvest' }}</td>
+                                    <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
+                                        {{ $row->amount }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-center">
                                         @if ($activate == $row->id)
-                                            <a href="javascript:;" class="btn btn-secondary"
+                                            <a href="javascript:;" class="btn btn-success"
                                                 wire:click="active">Activate</a>
                                             <a href="javascript:;" class="btn btn-secondary"
                                                 wire:click="setActivate">Cancel</a>
                                         @elseif ($delete == $row->id)
-                                            <a href="javascript:;" class="btn btn-secondary"
+                                            <a href="javascript:;" class="btn btn-success"
                                                 wire:click="delete">Delete</a>
                                             <a href="javascript:;" class="btn btn-secondary"
                                                 wire:click="setDelete">Cancel</a>

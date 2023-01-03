@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Bonus;
+use App\Models\Deposit;
 use App\Models\InvalidTurnover;
 use App\Models\User;
 use App\Models\UserView;
@@ -28,14 +29,38 @@ class Requestactivation extends Component
     public function active()
     {
         DB::transaction(function () {
-            $user = User::findOrFail($this->activate);
+            $bonus = [];
+            $invalid = [];
+            $parentLength = 0;
+
+            $deposit = Deposit::findOrFail($this->activate);
+            $deposit->processed_at = now();
+            $deposit->save();
+
+            $user = User::findOrFail($deposit->user_id);
             $upline = User::where('network', 'like', $user->sponsor->network . $user->sponsor_id . $user->team . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
 
-            $user->network = $upline ? $upline->network . $upline->getKey() . $user->team : $user->sponsor->network . $user->sponsor_id . $user->team;
-            $user->reinvest = 1;
-            $user->upline_id = $upline ? $upline->getKey() : $user->sponsor_id;
+            if ($user->network) {
+                $user->reinvest = $user->reinvest + 1;
+
+                $currentBonus = round($user->bonus->sum('amount') / 2);
+
+                Bonus::where('user_id', $deposit->user_id)->delete();
+
+                $bonus[] = [
+                    'description' => 'Remaining 50% bonus from ' . number_format($user->bonus->sum('amount')),
+                    'amount' => $currentBonus,
+                    'user_id' => $deposit->user_id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            } else {
+                $user->network = $upline ? $upline->network . $upline->getKey() . $user->team : $user->sponsor->network . $user->sponsor_id . $user->team;
+                $user->reinvest = 1;
+                $user->upline_id = $upline ? $upline->getKey() : $user->sponsor_id;
+            }
             $user->activated_at = now();
-            $user->processed_at = now();
+            // $user->processed_at = now();
             $user->save();
 
             $idParent = str_replace(['r', 'l'], [';', ';'], $user->network);
@@ -61,10 +86,6 @@ class Requestactivation extends Component
                     'deleted_at' => $q->deleted_at,
                 ];
             });
-
-            $bonus = [];
-            $invalid = [];
-            $parentLength = 0;
 
             $bonus[] = [
                 'description' => 'Sponsor ' . $user->package->sponsorship_benefits . ' of ' . $user->package->value . ' (' . $user->username . ')',
@@ -153,7 +174,7 @@ class Requestactivation extends Component
     {
         return view('livewire.requestactivation', [
             'i' => ($this->page - 1) * 10,
-            'data' => User::with('sponsor')->whereNull('activated_at')->paginate(10),
+            'data' => Deposit::with('user')->whereNotNull('registration')->whereNull('processed_at')->paginate(10),
         ]);
     }
 }

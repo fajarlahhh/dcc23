@@ -19,8 +19,12 @@
                             <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                         </svg>
                         <div class="ml-auto">
-                            <a href="javascript:;" data-toggle="modal" data-target="#modal-registration"
-                                class="btn btn-success w-24">Registration</a>
+                            @if (auth()->user()->package->benefit +
+                                auth()->user()->bonus->where('amount', '<', 0)->sum('amount') >
+                                auth()->user()->package->minimum_withdrawal)
+                                <a href="javascript:;" data-toggle="modal" data-target="#modal-registration"
+                                    class="btn btn-success w-24">Registration</a>
+                            @endif
                         </div>
                     </div>
                     <div class="text-base text-gray-600 mt-1">Turnover</div>

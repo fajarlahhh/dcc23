@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Form;
 
 use App\Models\Deposit;
 use App\Models\User;
 use App\Traits\MasteruserTrait;
 use Livewire\Component;
 
-class Activation extends Component
+class Reinvest extends Component
 {
     use MasteruserTrait;
-
     public $fromWallet;
 
     public function submit()
@@ -18,23 +17,16 @@ class Activation extends Component
         $this->validate(['fromWallet' => 'required']);
 
         $deposit = new Deposit();
-        $deposit->from_wallet = $this->fromWallet;
         $deposit->to_wallet = $this->masterUser->wallet;
+        $deposit->from_wallet = $this->fromWallet;
         $deposit->amount = auth()->user()->package->value;
-        $deposit->registration = 1;
+        $deposit->reinvest = 1;
         $deposit->save();
-
-        return $this->redirect(request()->header('Referer'));
-    }
-
-    public function cancel($id)
-    {
-        User::where('id', $id)->delete();
-        return $this->redirect(request()->header('Referer'));
+        return $this->redirect('/activation');
     }
 
     public function render()
     {
-        return view('livewire.activation')->extends('layouts.activation');
+        return view('livewire.form.reinvest');
     }
 }

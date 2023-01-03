@@ -39,7 +39,6 @@ class Registration extends Component
             $user->email = $this->email;
             $user->phone = $this->phone;
             $user->team = $this->team;
-            $user->to_wallet = $this->masterUser->wallet;
             $user->sponsor_id = $sponsor->getKey();
             $user->package_id = Package::where('value', $this->package)->first()->getKey();
             $user->save();

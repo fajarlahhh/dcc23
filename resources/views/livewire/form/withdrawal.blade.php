@@ -1,35 +1,14 @@
 <div>
     <form wire:submit.prevent="withdrawal">
         <div class="modal-body">
-            <div class="alert alert-primary show mb-2" role="alert">
-                <small>
-                    <table>
-                        <tr>
-                            <td>
-                                Min. WD
-                            </td>
-                            <td>
-                                : {{ auth()->user()->package->minimum_withdrawal }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Max. WD
-                            </td>
-                            <td>
-                                : {{ number_format(auth()->user()->package->maximum_withdrawal) }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Fee
-                            </td>
-                            <td>
-                                : {{ auth()->user()->package->fee_withdrawal }}
-                            </td>
-                        </tr>
-                    </table>
-                </small>
+            <div class="alert alert-warning show mb-2" role="alert">
+                <ul>
+                    <li>Available every weekdays (09.00 - 17.00 UTC+7)</li>
+                    <li>Min. WD : {{ auth()->user()->package->minimum_withdrawal }}</li>
+                    <li>Max. WD : {{ auth()->user()->package->maximum_withdrawal }}</li>
+                    <li>Fee : {{ auth()->user()->package->fee_withdrawal }}</li>
+                    <li>1 x 24 hours proccess</li>
+                </ul>
             </div>
             <div>
                 <label class="form-label">Amount</label>
@@ -40,11 +19,11 @@
             <div class="mt-3">
                 <label>Destination</label>
                 <div class="flex flex-col sm:flex-row mt-2 mr-5">
-                    <div class="form-check mr-2"> <input id="radio-switch-1" class="form-check-input" type="radio"
+                    <div class="form-check mr-10"> <input id="radio-switch-1" class="form-check-input" type="radio"
                             name="destination" wire:model.defer="destination" value="balance">
                         <label class="form-check-label" for="radio-switch-1">Balance</label>
                     </div>
-                    <div class="form-check mr-2 mt-2 sm:mt-0"> <input id="radio-switch-2" class="form-check-input"
+                    <div class="form-check mr-4 mt-2 sm:mt-0"> <input id="radio-switch-2" class="form-check-input"
                             type="radio" name="destination" wire:model.defer="destination" value="wallet">
                         <label class="form-check-label" for="radio-switch-2">Wallet</label>
                     </div>

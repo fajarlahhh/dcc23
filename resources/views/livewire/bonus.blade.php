@@ -20,12 +20,16 @@
                             <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
                         </svg>
                         <div class="ml-auto">
-                            @if (auth()->user()->bonus->sum('amount') >= auth()->user()->package->minimum_withdrawal &&
-                                auth()->user()->withdrawal->filter(function ($item) {
-                                        return false !== stristr($item->created_at, date('Y-m-d'));
-                                    })->count() == 0)
-                                <a href="javascript:;" data-toggle="modal" data-target="#modal-withdrawal"
-                                    class="btn btn-success w-24">Withdrawal</a>
+                            @if (auth()->user()->package->benefit +
+                                auth()->user()->bonus->where('amount', '<', 0)->sum('amount') >
+                                auth()->user()->package->minimum_withdrawal)
+                                @if (auth()->user()->bonus->sum('amount') >= auth()->user()->package->minimum_withdrawal &&
+                                    auth()->user()->withdrawal->filter(function ($item) {
+                                            return false !== stristr($item->created_at, date('Y-m-d'));
+                                        })->count() == 0)
+                                    <a href="javascript:;" data-toggle="modal" data-target="#modal-withdrawal"
+                                        class="btn btn-success w-24">Withdrawal</a>
+                                @endif
                             @endif
                         </div>
                     </div>
@@ -111,8 +115,7 @@
                                 @if ($row->to_wallet == 'balance')
                                     Balance
                                 @else
-                                
-                                {{ substr($row->to_wallet, 0, 4) . '....' . substr($row->to_wallet, -4) }}
+                                    {{ substr($row->to_wallet, 0, 4) . '....' . substr($row->to_wallet, -4) }}
                                 @endif
                             </div>
                             <div class="text-gray-600 text-xs mt-0.5">

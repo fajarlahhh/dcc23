@@ -22,14 +22,14 @@ class Requestdeposit extends Component
     public function done()
     {
         DB::transaction(function ($q) {
-            $wd = Deposit::findOrFail($this->process);
-            $wd->processed_at = now();
-            $wd->save();
+            $deposit = Deposit::findOrFail($this->process);
+            $deposit->processed_at = now();
+            $deposit->save();
 
             $balance = new Balance();
             $balance->description = "Top up";
-            $balance->amount = $wd->amount;
-            $balance->user_id = $wd->user_id;
+            $balance->amount = $deposit->amount;
+            $balance->user_id = $deposit->user_id;
             $balance->save();
         });
     }
@@ -44,7 +44,7 @@ class Requestdeposit extends Component
     {
         return view('livewire.requestdeposit', [
             // 'i' => ($this->page - 1) * 10,
-            'data' => Deposit::with('user')->when($this->status == 1, fn($q) => $q->whereNull('processed_at'))->when($this->status == 2, fn($q) => $q->where('processed_at', 'like', $this->year . '-' . $this->month . '%'))->get(),
+            'data' => Deposit::with('user')->when($this->status == 1, fn($q) => $q->whereNull('processed_at'))->when($this->status == 2, fn($q) => $q->where('processed_at', 'like', $this->year . '-' . $this->month . '%'))->whereNull('reinvest')->get(),
         ]);
     }
 }

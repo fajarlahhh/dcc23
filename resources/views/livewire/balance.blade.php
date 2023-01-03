@@ -19,10 +19,14 @@
                                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                             </svg>
                             <div class="ml-auto">
-                                <a href="javascript:;" data-toggle="modal" data-target="#modal-deposit"
-                                    class="btn btn-warning w-24">Deposit</a>
-                                <a href="javascript:;" data-toggle="modal" data-target="#modal-sendbalance"
-                                    class="btn btn-success w-24">Send</a>
+                                @if (auth()->user()->package->benefit +
+                                    auth()->user()->bonus->where('amount', '<', 0)->sum('amount') >
+                                    auth()->user()->package->minimum_withdrawal)
+                                    <a href="javascript:;" data-toggle="modal" data-target="#modal-deposit"
+                                        class="btn btn-warning w-24">Deposit</a>
+                                    <a href="javascript:;" data-toggle="modal" data-target="#modal-sendbalance"
+                                        class="btn btn-success w-24">Send</a>
+                                @endif
                             </div>
                         </div>
                         <div class="text-3xl font-bold leading-8 mt-6">
@@ -117,12 +121,15 @@
                 @endforeach
             </div>
         </div>
-        <x-modal title='Deposit'>
-            @livewire('form.deposit')
-        </x-modal>
-        <x-modal title='Send Balance'>
-            @livewire('form.sendbalance')
-        </x-modal>
+        @if (number_format(auth()->user()->package->benefit +
+                auth()->user()->bonus->where('amount', '<', 0)->sum('amount')) < auth()->user()->package->minimum_withdrawal)
+            <x-modal title='Deposit'>
+                @livewire('form.deposit')
+            </x-modal>
+            <x-modal title='Send Balance'>
+                @livewire('form.sendbalance')
+            </x-modal>
+        @endif
     @else
         <div class="intro-y gap-6 mt-5">
             <h5 class="text-2xl">Waiting For Fund . . .</h5>

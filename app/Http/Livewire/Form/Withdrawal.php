@@ -4,18 +4,24 @@ namespace App\Http\Livewire\Form;
 
 use App\Models\Balance;
 use App\Models\Bonus;
+use App\Models\User;
 use App\Models\Withdrawal as ModelsWithdrawal;
+use App\Rules\DayRule;
+use App\Rules\HourRule;
 use App\Rules\PinRule;
 use App\Rules\WalletRule;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Withdrawal extends Component
 {
-    public $amount, $destination = 'balance', $pin, $bonusTotal, $minWd, $maxWd, $benefit, $wallet;
+    public $amount, $destination = 'balance', $pin, $bonusTotal, $minWd, $maxWd, $benefit, $wallet, $hour, $today;
 
     public function mount()
     {
+        $this->today = Carbon::now()->dayOfWeek;
+        $this->hour = date('His');
         $this->bonusTotal = auth()->user()->bonus->sum('amount');
         $this->minWd = auth()->user()->package->minimum_withdrawal;
         $this->maxWd = auth()->user()->package->maximum_withdrawal;
@@ -32,6 +38,8 @@ class Withdrawal extends Component
                     'min:' . $this->minWd,
                     'max:' . ($this->bonusTotal > $this->maxWd ? ($this->maxWd > $this->benefit ? $this->benefit : $this->maxWd) : $this->bonusTotal)],
                 'destination' => 'required',
+                'hour' => new HourRule(),
+                'today' => new DayRule(),
                 'pin' => ['required', 'numeric', new PinRule()],
             ]);
         } else {
@@ -42,6 +50,8 @@ class Withdrawal extends Component
                     'min:' . $this->minWd,
                     'max:' . ($this->bonusTotal > $this->maxWd ? ($this->maxWd > $this->benefit ? $this->benefit : $this->maxWd) : $this->bonusTotal)],
                 'destination' => 'required',
+                'hour' => new HourRule(),
+                'today' => new DayRule(),
                 'wallet' => new WalletRule(),
                 'pin' => ['required', 'numeric', new PinRule()],
             ]);
@@ -89,6 +99,14 @@ class Withdrawal extends Component
                         $balance->withdrawal_id = $withdrawal->id;
                         $balance->user_id = auth()->id();
                         $balance->save();
+                    }
+
+                    if (auth()->user()->package->benefit +
+                        auth()->user()->bonus->where('amount', '<', 0)->sum('amount') <
+                        auth()->user()->package->minimum_withdrawal) {
+                        User::where('id', auth()->id())->update([
+                            'activated_at' => null,
+                        ]);
                     }
                 });
                 return $this->redirect('/bonus');

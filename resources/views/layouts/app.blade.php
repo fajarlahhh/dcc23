@@ -48,12 +48,6 @@
                     <div class="menu__title"> Downline </div>
                 </a>
             </li>
-            <li>
-                <a href="/renewal" class="menu">
-                    <div class="menu__icon"> <i data-feather="refresh-cw"></i> </div>
-                    <div class="menu__title"> Renewal </div>
-                </a>
-            </li>
             @if (auth()->user()->upline_id == null)
                 <hr>
                 <li>
@@ -103,12 +97,17 @@
             </div>
             <!-- END: Breadcrumb -->
             <!-- BEGIN: Account Menu -->
+            <div class="intro-x mr-3 text-red">
+                <button class="btn btn-sm btn-secondary mr-1 mt-2 mb-2" disabled>Hy, {{ auth()->user()->name }}
+                    ({{ auth()->user()->username }})</button>
+            </div>
             <div class="intro-x dropdown w-8 h-8">
                 <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110"
                     role="button" aria-expanded="false">
                     <img alt="Icewall Tailwind HTML Admin Template" src="/dist/images/profile-4.jpg">
                 </div>
                 <div class="dropdown-menu w-56">
+
                     <div class="dropdown-menu__content box bg-theme-11 dark:bg-dark-6 text-white">
                         <div class="p-4 border-b border-theme-12 dark:border-dark-3">
                             <div class="font-medium">{{ auth()->user()->name }}</div>
@@ -172,12 +171,6 @@
                             <div class="side-menu__title"> Downline </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="/renewal" class="side-menu">
-                            <div class="side-menu__icon"> <i data-feather="refresh-cw"></i> </div>
-                            <div class="side-menu__title"> Renewal </div>
-                        </a>
-                    </li>
                     @if (auth()->user()->upline_id == null)
                         <hr>
                         <li>
@@ -222,6 +215,11 @@
                 @endif
                 @if (!auth()->user()->wallet)
                     @livewire('form.createwallet')
+                @endif
+                @if (auth()->user()->package->benefit +
+                    auth()->user()->bonus->where('amount', '<', 0)->sum('amount') <
+                    auth()->user()->package->minimum_withdrawal)
+                    @livewire('form.reinvest')
                 @endif
                 @livewire('form.createpassword')
                 {{ $slot }}
