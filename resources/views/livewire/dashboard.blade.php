@@ -13,13 +13,13 @@
                 <div
                     class="w-full sm:w-100 leading-relaxed text-white text-opacity-70 dark:text-gray-600 dark:text-opacity-100 mt-3">
                     <strong>{{ strtoupper(auth()->user()->package->name) }}</strong> -
-                    {{ number_format(auth()->user()->package->value) }}
+                    {{ number_format(auth()->user()->package->benefit) }}
                     USDT
 
                     <div class="progress h-4 w-full bg-gray-200 rounded-full dark:bg-gray-700">
                         <div class="progress-bar text-xs bg-theme-17 font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                             style="width: {{ ((auth()->user()->package->benefit +auth()->user()->bonus->where('amount', '<', 0)->sum('amount')) /auth()->user()->package->benefit) *100 }}%">
-                            {{ ((auth()->user()->package->benefit +auth()->user()->bonus->where('amount', '<', 0)->sum('amount')) /auth()->user()->package->benefit) *100 }}%
+                            {{ number_format(auth()->user()->package->benefit +auth()->user()->bonus->where('amount', '<', 0)->sum('amount')) }}
                         </div>
                     </div>
                 </div>
