@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('/registration/{upline}/{team}', function (Request $req) {
     return view('registration', [
         'upline' => $req->upline,
@@ -31,6 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware' => ['active']], function () {
+        Route::get('/', \App\Http\Livewire\Dashboard::class);
         Route::get('/dashboard', \App\Http\Livewire\Dashboard::class);
         Route::get('/balance', \App\Http\Livewire\Balance::class);
         Route::get('/downline', \App\Http\Livewire\Downline::class);

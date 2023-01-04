@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Form;
 
-use App\Models\Balance;
 use App\Models\Bonus;
 use App\Models\User;
 use App\Models\Withdrawal as ModelsWithdrawal;
@@ -30,32 +29,32 @@ class Withdrawal extends Component
 
     public function withdrawal()
     {
-        if ($this->destination == 'balance') {
-            $this->validate([
-                'amount' => [
-                    'required',
-                    'numeric',
-                    'min:' . $this->minWd,
-                    'max:' . ($this->bonusTotal > $this->maxWd ? ($this->maxWd > $this->benefit ? $this->benefit : $this->maxWd) : $this->bonusTotal)],
-                'destination' => 'required',
-                'hour' => new HourRule(),
-                'today' => new DayRule(),
-                'pin' => ['required', 'numeric', new PinRule()],
-            ]);
-        } else {
-            $this->validate([
-                'amount' => [
-                    'required',
-                    'numeric',
-                    'min:' . $this->minWd,
-                    'max:' . ($this->bonusTotal > $this->maxWd ? ($this->maxWd > $this->benefit ? $this->benefit : $this->maxWd) : $this->bonusTotal)],
-                'destination' => 'required',
-                'hour' => new HourRule(),
-                'today' => new DayRule(),
-                'wallet' => new WalletRule(),
-                'pin' => ['required', 'numeric', new PinRule()],
-            ]);
-        }
+        // if ($this->destination == 'balance') {
+        //     $this->validate([
+        //         'amount' => [
+        //             'required',
+        //             'numeric',
+        //             'min:' . $this->minWd,
+        //             'max:' . ($this->bonusTotal > $this->maxWd ? ($this->maxWd > $this->benefit ? $this->benefit : $this->maxWd) : $this->bonusTotal)],
+        //         'destination' => 'required',
+        //         'hour' => new HourRule(),
+        //         'today' => new DayRule(),
+        //         'pin' => ['required', 'numeric', new PinRule()],
+        //     ]);
+        // } else {
+        $this->validate([
+            'amount' => [
+                'required',
+                'numeric',
+                'min:' . $this->minWd,
+                'max:' . ($this->bonusTotal > $this->maxWd ? ($this->maxWd > $this->benefit ? $this->benefit : $this->maxWd) : $this->bonusTotal)],
+            // 'destination' => 'required',
+            'hour' => new HourRule(),
+            'today' => new DayRule(),
+            'wallet' => new WalletRule(),
+            'pin' => ['required', 'numeric', new PinRule()],
+        ]);
+        // }
 
         try {
             $wd = true;
@@ -71,11 +70,11 @@ class Withdrawal extends Component
                     $fee = auth()->user()->package->fee_withdrawal;
 
                     $withdrawal = new ModelsWithdrawal();
-                    if ($this->destination == 'wallet') {
-                        $withdrawal->to_wallet = auth()->user()->wallet;
-                    } else {
-                        $withdrawal->to_wallet = 'balance';
-                    }
+                    // if ($this->destination == 'wallet') {
+                    $withdrawal->to_wallet = auth()->user()->wallet;
+                    // } else {
+                    //     $withdrawal->to_wallet = 'balance';
+                    // }
                     $withdrawal->amount = $this->amount - $fee;
                     $withdrawal->fee = $fee;
                     $withdrawal->save();
@@ -87,19 +86,19 @@ class Withdrawal extends Component
                     $bonus->user_id = auth()->id();
                     $bonus->save();
 
-                    if ($this->destination == 'balance') {
-                        ModelsWithdrawal::where('id', $withdrawal->id)->update([
-                            'processed_at' => now(),
-                            'txid' => 'balance',
-                        ]);
+                    // if ($this->destination == 'balance') {
+                    //     ModelsWithdrawal::where('id', $withdrawal->id)->update([
+                    //         'processed_at' => now(),
+                    //         'txid' => 'balance',
+                    //     ]);
 
-                        $balance = new Balance();
-                        $balance->description = 'Withdrawal to balance';
-                        $balance->amount = $this->amount - $fee;
-                        $balance->withdrawal_id = $withdrawal->id;
-                        $balance->user_id = auth()->id();
-                        $balance->save();
-                    }
+                    //     $balance = new Balance();
+                    //     $balance->description = 'Withdrawal to balance';
+                    //     $balance->amount = $this->amount - $fee;
+                    //     $balance->withdrawal_id = $withdrawal->id;
+                    //     $balance->user_id = auth()->id();
+                    //     $balance->save();
+                    // }
 
                     if (auth()->user()->package->benefit +
                         auth()->user()->bonus->where('amount', '<', 0)->sum('amount') <

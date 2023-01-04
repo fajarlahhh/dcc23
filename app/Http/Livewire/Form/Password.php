@@ -21,7 +21,7 @@ class Password extends Component
         );
 
         if (Hash::check($this->oldPassword, auth()->user()->password)) {
-            User::find(auth()->id())->update([
+            User::where('id', auth()->id())->update([
                 'password' => Hash::make($this->newPassword),
             ]);
             auth()->logoutOtherDevices($this->oldPassword);

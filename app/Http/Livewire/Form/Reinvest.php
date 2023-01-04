@@ -20,7 +20,7 @@ class Reinvest extends Component
         $deposit->to_wallet = $this->masterUser->wallet;
         $deposit->from_wallet = $this->fromWallet;
         $deposit->amount = auth()->user()->package->value;
-        $deposit->reinvest = 1;
+        $deposit->registration = 1;
         $deposit->save();
         return $this->redirect('/activation');
     }

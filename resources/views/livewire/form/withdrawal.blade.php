@@ -16,7 +16,7 @@
                     max="{{ auth()->user()->package->maximum_withdrawal }}" wire:model.defer="amount" autocomplete="off"
                     required>
             </div>
-            <div class="mt-3">
+            {{-- <div class="mt-3">
                 <label>Destination</label>
                 <div class="flex flex-col sm:flex-row mt-2 mr-5">
                     <div class="form-check mr-10"> <input id="radio-switch-1" class="form-check-input" type="radio"
@@ -28,7 +28,7 @@
                         <label class="form-check-label" for="radio-switch-2">Wallet</label>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="alert alert-secondary show mt-5" role="alert">
                 <div>
                     <label class="form-label">PIN</label>

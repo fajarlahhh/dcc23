@@ -121,8 +121,9 @@
                 @endforeach
             </div>
         </div>
-        @if (number_format(auth()->user()->package->benefit +
-                auth()->user()->bonus->where('amount', '<', 0)->sum('amount')) < auth()->user()->package->minimum_withdrawal)
+        @if (auth()->user()->package->benefit +
+            auth()->user()->bonus->where('amount', '<', 0)->sum('amount') >
+            auth()->user()->package->minimum_withdrawal)
             <x-modal title='Deposit'>
                 @livewire('form.deposit')
             </x-modal>
