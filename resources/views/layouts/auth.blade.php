@@ -8,7 +8,7 @@
     <meta name="description" content="DCC23">
     <meta name="keywords" content="DCC23">
     <meta name="author" content="LEFT4CODE">
-    <link href="/dist/images/logo.svg" rel="shortcut icon">
+    <link href="/dist/images/dcc.png" rel="shortcut icon">
     <link rel="stylesheet" href="/dist/css/app.css" />
     @livewireStyles
 </head>

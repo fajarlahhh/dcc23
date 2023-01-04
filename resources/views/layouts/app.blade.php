@@ -8,7 +8,7 @@
     <meta name="description" content="DCC23">
     <meta name="keywords" content="DCC23">
     <meta name="author" content="LEFT4CODE">
-    <link href="/dist/images/logo.svg" rel="shortcut icon">
+    <link href="/dist/images/dcc.png" rel="shortcut icon">
     <link rel="stylesheet" href="/dist/css/app.css" />
     @stack('styles')
     @livewireStyles
@@ -18,7 +18,7 @@
     <div class="mobile-menu md:hidden">
         <div class="mobile-menu-bar">
             <a href="" class="flex mr-auto">
-                <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="/dist/images/logo.svg">
+                <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="/dist/images/dcc.png">
             </a>
             <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2"
                     class="w-8 h-8 text-white transform -rotate-90"></i> </a>
@@ -88,7 +88,7 @@
         <div class="h-full flex items-center">
             <!-- BEGIN: Logo -->
             <a href="" class="-intro-x hidden md:flex">
-                <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="/dist/images/logo.svg">
+                <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="/dist/images/dcc.png">
                 <span class="text-white text-lg ml-3"> DCC<span class="font-medium">23</span> </span>
             </a>
             <!-- END: Logo -->

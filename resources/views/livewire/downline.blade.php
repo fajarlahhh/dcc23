@@ -47,14 +47,23 @@
             <div class="intro-y sm:gap-6 gap-y-6 box px-5 py-8 ">
                 <table class="table">
                     <tr>
-                        <td colspan="4" class="text-center border-b dark:border-dark-5" style="width: 100%">
-                            {{ $network->username }}<br>
-                            <small>{{ $network->name }}</small>
-                            <br>
-                            {{ number_format((int) $network->valid_left - (int) $network->invalidLeft->sum('amount')) }}
-                            |
-                            {{ number_format((int) $network->valid_right - (int) $network->invalidRight->sum('amount')) }}
-                        </td>
+                        @if ($network)
+                            <td colspan="4" class="text-center border-b dark:border-dark-5" style="width: 100%">
+                                <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                    style="display: block;margin-left: auto;margin-right: auto;">
+                                {{ $network->username }} - <small>{{ $network->name }}</small>
+                                <br>
+                                {{ number_format((int) $network->valid_left - (int) $network->invalidLeft->sum('amount')) }}
+                                |
+                                {{ number_format((int) $network->valid_right - (int) $network->invalidRight->sum('amount')) }}
+                            </td>
+                        @else
+                            <td>
+                                &nbsp;<br>
+                                &nbsp;<br>
+                                &nbsp;
+                            </td>
+                        @endif
                     </tr>
                     <tr>
                         <td colspan="2" class="text-center border-b dark:border-dark-5" style="width: 50%">
@@ -64,7 +73,9 @@
                                 });
                             @endphp
                             @if ($downline1Left->count() > 0)
-                                {{ $downline1Left->first()->username }}<br>
+                                <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                    style="display: block;margin-left: auto;margin-right: auto;">
+                                {{ $downline1Left->first()->username }} -
                                 <small>{{ $downline1Left->first()->name }}</small>
                                 <br>
                                 {{ number_format((int) $downline1Left->first()->valid_left - (int) $downline1Left->first()->invalidLeft->sum('amount')) }}
@@ -83,7 +94,9 @@
                                 });
                             @endphp
                             @if ($downline1Right->count() > 0)
-                                {{ $downline1Right->first()->username }}<br>
+                                <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                    style="display: block;margin-left: auto;margin-right: auto;">
+                                {{ $downline1Right->first()->username }} -
                                 <small>{{ $downline1Right->first()->name }}</small>
                                 <br>
                                 {{ number_format((int) $downline1Right->first()->valid_left - (int) $downline1Right->first()->invalidLeft->sum('amount')) }}
@@ -105,7 +118,9 @@
                                     });
                                 @endphp
                                 @if ($downline2Left->count() > 0)
-                                    {{ $downline2Left->first()->username }}<br>
+                                    <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                        style="display: block;margin-left: auto;margin-right: auto;">
+                                    {{ $downline2Left->first()->username }} -
                                     <small>{{ $downline2Left->first()->name }}</small>
                                     <br>
                                     {{ number_format((int) $downline2Left->first()->valid_left - (int) $downline2Left->first()->invalidLeft->sum('amount')) }}
@@ -114,7 +129,7 @@
                                     <br>
                                     @if ($downline2Left->first()->downline->count() > 0)
                                         <a href="/downline?key={{ $downline2Left->first()->id }}"
-                                            class="btn btn-sm btn-success">Next</a>
+                                            class="btn btn-sm btn-secondary">Next</a>
                                     @endif
                                 @endif
                             @else
@@ -131,7 +146,9 @@
                                     });
                                 @endphp
                                 @if ($downline2Right->count() > 0)
-                                    {{ $downline2Right->first()->username }}<br>
+                                    <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                        style="display: block;margin-left: auto;margin-right: auto;">
+                                    {{ $downline2Right->first()->username }} -
                                     <small>{{ $downline2Right->first()->name }}</small>
                                     <br>
                                     {{ number_format((int) $downline2Right->first()->valid_left - (int) $downline2Right->first()->invalidLeft->sum('amount')) }}
@@ -140,7 +157,7 @@
                                     <br>
                                     @if ($downline2Right->first()->downline->count() > 0)
                                         <a href="/downline?key={{ $downline2Right->first()->id }}"
-                                            class="btn btn-sm btn-success">Next</a>
+                                            class="btn btn-sm btn-secondary">Next</a>
                                     @endif
                                 @endif
                             @else
@@ -157,7 +174,9 @@
                                     });
                                 @endphp
                                 @if ($downline12Left->count() > 0)
-                                    {{ $downline12Left->first()->username }}<br>
+                                    <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                        style="display: block;margin-left: auto;margin-right: auto;">
+                                    {{ $downline12Left->first()->username }} -
                                     <small>{{ $downline12Left->first()->name }}</small>
                                     <br>
                                     {{ number_format((int) $downline12Left->first()->valid_left - (int) $downline12Left->first()->invalidLeft->sum('amount')) }}
@@ -166,7 +185,7 @@
                                     <br>
                                     @if ($downline12Left->first()->downline->count() > 0)
                                         <a href="/downline?key={{ $downline12Left->first()->id }}"
-                                            class="btn btn-sm btn-success">Next</a>
+                                            class="btn btn-sm btn-secondary">Next</a>
                                     @endif
                                 @endif
                             @else
@@ -183,7 +202,9 @@
                                     });
                                 @endphp
                                 @if ($downline12Right->count() > 0)
-                                    {{ $downline12Right->first()->username }}<br>
+                                    <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                        style="display: block;margin-left: auto;margin-right: auto;">
+                                    {{ $downline12Right->first()->username }} -
                                     <small>{{ $downline12Right->first()->name }}</small>
                                     <br>
                                     {{ number_format((int) $downline12Right->first()->valid_left - (int) $downline12Right->first()->invalidLeft->sum('amount')) }}
@@ -192,7 +213,7 @@
                                     <br>
                                     @if ($downline12Right->first()->downline->count() > 0)
                                         <a href="/downline?key={{ $downline12Right->first()->id }}"
-                                            class="btn btn-sm btn-success">Next</a>
+                                            class="btn btn-sm btn-secondary">Next</a>
                                     @endif
                                 @endif
                             @else
