@@ -76,7 +76,7 @@ class Dailybonus extends Component
         $from = Carbon::parse($last);
         $now = Carbon::now();
 
-        $this->diff = $from->diffInDays($now);
+        $this->diff = $from->diffInDays($now) + 1;
         for ($i = 0; $i < $this->diff; $i++) {
             $this->daily[] = [
                 'date' => Carbon::parse($last)->addDays($i + 1)->format('Y-m-d'),
