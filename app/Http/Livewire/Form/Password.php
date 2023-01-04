@@ -24,7 +24,6 @@ class Password extends Component
             User::where('id', auth()->id())->update([
                 'password' => Hash::make($this->newPassword),
             ]);
-            auth()->logoutOtherDevices($this->oldPassword);
             auth()->logout();
             return $this->redirect(request()->header('Referer'));
         } else {
