@@ -2,20 +2,16 @@
     <div class="block xl:grid grid-cols-2 gap-4">
         <div class="hidden xl:flex flex-col min-h-screen">
             <a href="/" class="-intro-x flex items-center pt-5">
-                <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="/dist/images/dcc.png">
-                <span class="text-white text-lg ml-3"> Ice<span class="font-medium">wall</span> </span>
+                <img alt="23" class="w-6" src="/dist/images/logo.png">
+                <span class="text-white text-lg ml-3"> DCC<span class="font-medium">23</span> </span>
             </a>
             <div class="my-auto">
-                <img alt="Icewall Tailwind HTML Admin Template" class="-intro-x w-1/2 -mt-16"
-                    src="/dist/images/illustration.svg">
+                <img alt="DCC23" class="-intro-x w-1/2 -mt-16" src="/dist/images/illustration.svg">
                 <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
                     A few more clicks to
                     <br>
                     sign in to your account.
                 </div>
-                <div class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-gray-500">Manage all your
-                    e-commerce
-                    accounts in one place</div>
             </div>
         </div>
         <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">

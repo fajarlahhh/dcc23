@@ -2,7 +2,7 @@
     <div class="block xl:grid grid-cols-2 gap-4">
         <div class="hidden xl:flex flex-col min-h-screen">
             <a href="/" class="-intro-x flex items-center pt-5">
-                <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="/dist/images/dcc.png">
+                <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="/dist/images/logo.png">
                 <span class="text-white text-lg ml-3"> Ice<span class="font-medium">wall</span> </span>
             </a>
             <div class="my-auto">

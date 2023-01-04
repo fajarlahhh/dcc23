@@ -49,7 +49,7 @@
                     <tr>
                         @if ($network)
                             <td colspan="4" class="text-center border-b dark:border-dark-5" style="width: 100%">
-                                <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                <img src="/dist/images/logo.png" class="w-10" alt=""
                                     style="display: block;margin-left: auto;margin-right: auto;">
                                 {{ $network->username }} - <small>{{ $network->name }}</small>
                                 <br>
@@ -73,7 +73,7 @@
                                 });
                             @endphp
                             @if ($downline1Left->count() > 0)
-                                <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                <img src="/dist/images/logo.png" class="w-10" alt=""
                                     style="display: block;margin-left: auto;margin-right: auto;">
                                 {{ $downline1Left->first()->username }} -
                                 <small>{{ $downline1Left->first()->name }}</small>
@@ -94,7 +94,7 @@
                                 });
                             @endphp
                             @if ($downline1Right->count() > 0)
-                                <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                <img src="/dist/images/logo.png" class="w-10" alt=""
                                     style="display: block;margin-left: auto;margin-right: auto;">
                                 {{ $downline1Right->first()->username }} -
                                 <small>{{ $downline1Right->first()->name }}</small>
@@ -118,7 +118,7 @@
                                     });
                                 @endphp
                                 @if ($downline2Left->count() > 0)
-                                    <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                    <img src="/dist/images/logo.png" class="w-10" alt=""
                                         style="display: block;margin-left: auto;margin-right: auto;">
                                     {{ $downline2Left->first()->username }} -
                                     <small>{{ $downline2Left->first()->name }}</small>
@@ -146,7 +146,7 @@
                                     });
                                 @endphp
                                 @if ($downline2Right->count() > 0)
-                                    <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                    <img src="/dist/images/logo.png" class="w-10" alt=""
                                         style="display: block;margin-left: auto;margin-right: auto;">
                                     {{ $downline2Right->first()->username }} -
                                     <small>{{ $downline2Right->first()->name }}</small>
@@ -174,7 +174,7 @@
                                     });
                                 @endphp
                                 @if ($downline12Left->count() > 0)
-                                    <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                    <img src="/dist/images/logo.png" class="w-10" alt=""
                                         style="display: block;margin-left: auto;margin-right: auto;">
                                     {{ $downline12Left->first()->username }} -
                                     <small>{{ $downline12Left->first()->name }}</small>
@@ -202,7 +202,7 @@
                                     });
                                 @endphp
                                 @if ($downline12Right->count() > 0)
-                                    <img src="/dist/images/dcc.png" class="w-10" alt=""
+                                    <img src="/dist/images/logo.png" class="w-10" alt=""
                                         style="display: block;margin-left: auto;margin-right: auto;">
                                     {{ $downline12Right->first()->username }} -
                                     <small>{{ $downline12Right->first()->name }}</small>
