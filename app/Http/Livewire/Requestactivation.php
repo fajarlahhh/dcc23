@@ -60,7 +60,7 @@ class Requestactivation extends Component
                 $user->upline_id = $upline ? $upline->getKey() : $user->sponsor_id;
             }
             $user->activated_at = now();
-            // $user->processed_at = now();
+            $user->processed_at = now();
             $user->save();
 
             $idParent = str_replace(['r', 'l'], [';', ';'], $user->network);

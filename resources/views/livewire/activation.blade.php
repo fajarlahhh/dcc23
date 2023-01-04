@@ -1,7 +1,7 @@
 <div>
     <x-info />
     <x-alert />
-    @if (auth()->user()->from_wallet)
+    @if (auth()->user()->deposit->where('registration', 1)->whereNull('processed_at')->count() > 0)
         <div class="alert alert-success show  text-center mb-2 mt-10" role="alert">
             <h4>
                 Your activation information has been submitted, please wait for activation by admin.<br>
@@ -32,10 +32,10 @@
                         <strong>{{ number_format(auth()->user()->package->value) }}</strong>
                         USDT
                         <small>BEP-20</small> to address
-                        <strong><small>{{ auth()->user()->to_wallet }}</small></strong>
+                        <strong><small>{{ \App\Models\User::where('id', 1)->first()->wallet }}</small></strong>
                         <br>
                         <div style="display: flex; justify-content: center;" class="mt-3">
-                            {!! QrCode::size(200)->generate(auth()->user()->to_wallet) !!}
+                            {!! QrCode::size(200)->generate(\App\Models\User::where('id', 1)->first()->wallet) !!}
                         </div><br>
                     </td>
                 </tr>
