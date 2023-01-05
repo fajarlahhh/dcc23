@@ -65,12 +65,12 @@
                                     @if ($status == 1)
                                         <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-center">
                                             @if ($process == $row->id)
-                                                <a href="javascript:;" class="btn btn-secondary" wire:click="done">Yes,
+                                                <a href="javascript:;" class="btn btn-success" wire:click="done">Yes,
                                                     Process</a>
                                                 <a href="javascript:;" class="btn btn-secondary"
                                                     wire:click="setProcess">Cancel</a>
                                             @elseif ($delete == $row->id)
-                                                <a href="javascript:;" class="btn btn-secondary"
+                                                <a href="javascript:;" class="btn btn-success"
                                                     wire:click="doDelete">Yes,
                                                     Delete</a>
                                                 <a href="javascript:;" class="btn btn-secondary"
