@@ -30,7 +30,7 @@ class Requestactivation extends Component
     {
         DB::transaction(function () {
             $bonus = [];
-            $invalid = [];
+            $dataInvalid = [];
             $parentLength = 0;
 
             $deposit = Deposit::findOrFail($this->activate);
@@ -38,9 +38,8 @@ class Requestactivation extends Component
             $deposit->save();
 
             $user = User::findOrFail($deposit->user_id);
-            $upline = User::where('network', 'like', $user->sponsor->network . $user->sponsor_id . $user->team . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
 
-            if ($user->network) {
+            if ($deposit->registration == 2) {
                 $user->reinvest = $user->reinvest + 1;
 
                 $currentBonus = round($user->bonus->sum('amount') / 2);
@@ -55,6 +54,8 @@ class Requestactivation extends Component
                     'updated_at' => now(),
                 ];
             } else {
+                $upline = User::where('network', 'like', $user->sponsor->network . $user->sponsor_id . $user->team . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
+
                 $user->network = $upline ? $upline->network . $upline->getKey() . $user->team : $user->sponsor->network . $user->sponsor_id . $user->team;
                 $user->reinvest = 1;
                 $user->upline_id = $upline ? $upline->getKey() : $user->sponsor_id;
@@ -87,13 +88,15 @@ class Requestactivation extends Component
                 ];
             });
 
-            $bonus[] = [
-                'description' => 'Sponsor ' . $user->package->sponsorship_benefits . ' of ' . $user->package->value . ' (' . $user->username . ')',
-                'amount' => $user->package->sponsorship_benefits,
-                'user_id' => $user->sponsor_id,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
+            if ($user->sponsor_id) {
+                $bonus[] = [
+                    'description' => 'Sponsor ' . $user->package->sponsorship_benefits . ' of ' . $user->package->value . ' (' . $user->username . ')',
+                    'amount' => $user->package->sponsorship_benefits,
+                    'user_id' => $user->sponsor_id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
 
             $network = $user->network;
             foreach ($dataParent as $key => $row) {
@@ -135,7 +138,7 @@ class Requestactivation extends Component
                     }
                 }
                 if (is_null($row['activated_at'])) {
-                    array_push($invalid, [
+                    array_push($dataInvalid, [
                         'user_id' => $row['id'],
                         'downline_id' => $user->getKey,
                         'amount' => $user->package->value,
@@ -148,7 +151,7 @@ class Requestactivation extends Component
                 $network = substr($network, 0, (strlen($network) - $parentLength));
             }
 
-            $invalidData = collect($invalid)->chunk(400);
+            $invalidData = collect($dataInvalid)->chunk(400);
 
             foreach ($invalidData as $row) {
                 InvalidTurnover::insert($row->toArray());

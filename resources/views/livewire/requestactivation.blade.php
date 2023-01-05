@@ -32,7 +32,7 @@
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->user->name }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
-                                        {{ $row->user->sponsor->username }}
+                                        {{ $row->user->sponsor ? $row->user->sponsor->username : '' }}
                                     </td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->from_wallet }}

@@ -4,23 +4,26 @@
             <div class="intro-y box">
                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-gray-200 dark:border-dark-5">
                     <h2 class="font-medium text-base mr-auto">
-                        Request Deposit 
+                        Request Deposit
                     </h2>
                     <div class="w-full sm:w-auto flex items-center sm:ml-auto mt-3 sm:mt-0">
                         @if ($status == 2)
-                        <select class="form-select mt-2 sm:mr-2" aria-label="Default select example" wire:model="month">
-                            @for ($i = 1; $i <= 12; $i++)
-                                <option value="{{ sprintf('%02s', $i) }}">
-                                {{ DateTime::createFromFormat('!m', $i)->format('F') }}</option>
-                            @endfor
-                        </select>
-                        <select class="form-select mt-2 sm:mr-2" aria-label="Default select example" wire:model="year">
-                            @for ($i = 2023; $i <= date('Y'); $i++)
-                              <option value="{{ $i }}">{{ $i }}</option>
-                            @endfor
-                        </select>
+                            <select class="form-select mt-2 sm:mr-2" aria-label="Default select example"
+                                wire:model="month">
+                                @for ($i = 1; $i <= 12; $i++)
+                                    <option value="{{ sprintf('%02s', $i) }}">
+                                        {{ DateTime::createFromFormat('!m', $i)->format('F') }}</option>
+                                @endfor
+                            </select>
+                            <select class="form-select mt-2 sm:mr-2" aria-label="Default select example"
+                                wire:model="year">
+                                @for ($i = 2023; $i <= date('Y'); $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            </select>
                         @endif
-                        <select class="form-select mt-2 sm:mr-2" aria-label="Default select example" wire:model="status">
+                        <select class="form-select mt-2 sm:mr-2" aria-label="Default select example"
+                            wire:model="status">
                             <option value="1">Waiting</option>
                             <option value="2">Processed</option>
                         </select>
@@ -37,7 +40,7 @@
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">To Wallet</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Amount</th>
                                 @if ($status == 1)
-                                <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap"></th>
+                                    <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap"></th>
                                 @endif
                             </tr>
                         </thead>
@@ -60,24 +63,37 @@
                                         {{ number_format($row->amount) }}
                                     </td>
                                     @if ($status == 1)
-                                    <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-center">
-                                        @if ($process == $row->id)
-                                            <a href="javascript:;" class="btn btn-secondary" wire:click="done">Process</a>
-                                            <a href="javascript:;" class="btn btn-secondary" wire:click="setProcess">Cancel</a>
-                                        @else
-                                            <a href="javascript:;" class="btn btn-secondary"
-                                                wire:click="setProcess({{ $row->id }})">Process
-                                            </a>
-                                        @endif
-                                    </td>
+                                        <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-center">
+                                            @if ($process == $row->id)
+                                                <a href="javascript:;" class="btn btn-secondary" wire:click="done">Yes,
+                                                    Process</a>
+                                                <a href="javascript:;" class="btn btn-secondary"
+                                                    wire:click="setProcess">Cancel</a>
+                                            @elseif ($delete == $row->id)
+                                                <a href="javascript:;" class="btn btn-secondary"
+                                                    wire:click="delete">Yes,
+                                                    Process</a>
+                                                <a href="javascript:;" class="btn btn-secondary"
+                                                    wire:click="setDelete">Cancel</a>
+                                            @else
+                                                <a href="javascript:;" class="btn btn-secondary"
+                                                    wire:click="setProcess({{ $row->id }})">Process
+                                                </a>
+                                                <a href="javascript:;" class="btn btn-secondary"
+                                                    wire:click="setDelete({{ $row->id }})">Delete
+                                                </a>
+                                            @endif
+                                        </td>
                                     @endif
                                 </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="5" class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-right">Total</th>
-                                <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-right">{{number_format($data->sum('amount'))}}</th>
+                                <th colspan="5"
+                                    class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-right">Total</th>
+                                <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-right">
+                                    {{ number_format($data->sum('amount')) }}</th>
                             </tr>
                         </tfoot>
                     </table>
