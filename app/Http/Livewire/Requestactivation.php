@@ -167,9 +167,13 @@ class Requestactivation extends Component
 
     public function delete()
     {
-        User::where('id', $this->delete)->update([
-            'deleted_at' => now(),
-        ]);
+        $deposit = Deposit::findOrFail($this->delete);
+        if ($deposit->registration == 1) {
+            User::whereId($deposit->user_id)->delete();
+        } else if ($deposit->registration == 2) {
+            Deposit::withId($this->delete);
+        }
+
         $this->delete = null;
     }
 

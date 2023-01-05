@@ -71,8 +71,8 @@
                                                     wire:click="setProcess">Cancel</a>
                                             @elseif ($delete == $row->id)
                                                 <a href="javascript:;" class="btn btn-secondary"
-                                                    wire:click="delete">Yes,
-                                                    Process</a>
+                                                    wire:click="doDelete">Yes,
+                                                    Delete</a>
                                                 <a href="javascript:;" class="btn btn-secondary"
                                                     wire:click="setDelete">Cancel</a>
                                             @else

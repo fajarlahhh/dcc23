@@ -24,7 +24,7 @@ class Requestdeposit extends Component
         $this->delete = $delete;
     }
 
-    public function delete()
+    public function doDelete()
     {
         Deposit::withId($this->delete)->delete();
     }
