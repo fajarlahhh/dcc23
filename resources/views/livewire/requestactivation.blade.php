@@ -46,13 +46,13 @@
                                         {{ $row->amount }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-center">
                                         @if ($activate == $row->id)
-                                            <a href="javascript:;" class="btn btn-success"
-                                                wire:click="active">Activate</a>
+                                            <a href="javascript:;" class="btn btn-success" wire:click="active">Yes,
+                                                Activate</a>
                                             <a href="javascript:;" class="btn btn-secondary"
                                                 wire:click="setActivate">Cancel</a>
                                         @elseif ($delete == $row->id)
-                                            <a href="javascript:;" class="btn btn-success"
-                                                wire:click="delete">Delete</a>
+                                            <a href="javascript:;" class="btn btn-success" wire:click="delete">Yes,
+                                                Delete</a>
                                             <a href="javascript:;" class="btn btn-secondary"
                                                 wire:click="setDelete">Cancel</a>
                                         @else
