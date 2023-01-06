@@ -21,10 +21,10 @@ class Withdrawal extends Component
     {
         $this->today = Carbon::now()->dayOfWeek;
         $this->hour = date('His');
-        $this->bonusTotal = auth()->user()->bonus->sum('amount');
+        $this->bonusTotal = auth()->user()->bonus->whereNull('invalid')->sum('amount');
         $this->minWd = auth()->user()->package->minimum_withdrawal;
         $this->maxWd = auth()->user()->package->maximum_withdrawal;
-        $this->benefit = auth()->user()->package->benefit + auth()->user()->bonus->where('amount', '<', 0)->sum('amount');
+        $this->benefit = auth()->user()->package->benefit + auth()->user()->bonus->whereNull('invalid')->where('amount', '<', 0)->sum('amount');
     }
 
     public function withdrawal()
@@ -101,7 +101,7 @@ class Withdrawal extends Component
                     // }
 
                     if (auth()->user()->package->benefit +
-                        auth()->user()->bonus->where('amount', '<', 0)->sum('amount') <
+                        auth()->user()->bonus->whereNull('invalid')->where('amount', '<', 0)->sum('amount') <
                         auth()->user()->package->minimum_withdrawal) {
                         User::where('id', auth()->id())->update([
                             'activated_at' => null,

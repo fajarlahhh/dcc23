@@ -17,18 +17,18 @@
 
                     <div class="progress h-6 w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-3">
                         <div class="progress-bar text-xs bg-theme-17 font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                            style="width: {{ ((auth()->user()->package->benefit +auth()->user()->bonus->where('amount', '<', 0)->sum('amount')) /auth()->user()->package->benefit) *100 }}%">
+                            style="width: {{ ((auth()->user()->package->benefit +auth()->user()->bonus->whereNull('invalid')->where('amount', '<', 0)->sum('amount')) /auth()->user()->package->benefit) *100 }}%">
 
                         </div>
                     </div>
                     <div class="text-center">Available
                         :
-                        {{ number_format(auth()->user()->package->benefit +auth()->user()->bonus->where('amount', '<', 0)->sum('amount')) }}
+                        {{ number_format(auth()->user()->package->benefit +auth()->user()->bonus->whereNull('invalid')->where('amount', '<', 0)->sum('amount')) }}
                         / {{ number_format(auth()->user()->package->benefit) }}</div>
                 </div>
                 <a href="/bonus" class="btn w-100 btn-success dark:text-dark mt-6 sm:mt-10">Current Bonus
                     :
-                    {{ number_format(auth()->user()->bonus->sum('amount')) }}</a>
+                    {{ number_format(auth()->user()->bonus->whereNull('invalid')->sum('amount')) }}</a>
                 <a href="/balance" class="btn w-100 btn-warning dark:text-dark mt-6 sm:mt-10">Balance :
                     {{ number_format(auth()->user()->balance->sum('amount')) }}</a>
                 <a href="/downline" class="btn w-100 btn-twitter dark:text-dark mt-6 sm:mt-10">Downline :

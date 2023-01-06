@@ -11,4 +11,9 @@ class Bonus extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'bonus';
+
+    public function scopeValid($query)
+    {
+        return $query->whereNull('invalid');
+    }
 }

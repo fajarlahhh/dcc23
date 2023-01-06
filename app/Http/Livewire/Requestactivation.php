@@ -44,7 +44,7 @@ class Requestactivation extends Component
 
                 $currentBonus = round($user->bonus->sum('amount') / 2);
 
-                Bonus::where('user_id', $deposit->user_id)->delete();
+                Bonus::where('user_id', $deposit->user_id)->whereNull('invalid')->delete();
 
                 $bonus[] = [
                     'description' => 'Remaining 50% bonus from ' . number_format($user->bonus->sum('amount')),

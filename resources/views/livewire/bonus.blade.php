@@ -21,9 +21,9 @@
                         </svg>
                         <div class="ml-auto">
                             @if (auth()->user()->package->benefit +
-                                auth()->user()->bonus->where('amount', '<', 0)->sum('amount') >
+                                auth()->user()->bonus->whereNull('invalid')->where('amount', '<', 0)->sum('amount') >
                                 auth()->user()->package->minimum_withdrawal)
-                                @if (auth()->user()->bonus->sum('amount') >= auth()->user()->package->minimum_withdrawal &&
+                                @if (auth()->user()->bonus->whereNull('invalid')->sum('amount') >= auth()->user()->package->minimum_withdrawal &&
                                     auth()->user()->withdrawal->filter(function ($item) {
                                             return false !== stristr($item->created_at, date('Y-m-d'));
                                         })->count() == 0)
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="text-3xl font-bold leading-8 mt-6">
-                        {{ number_format(auth()->user()->bonus->sum('amount')) }}</div>
+                        {{ number_format(auth()->user()->bonus->whereNull('invalid')->sum('amount')) }}</div>
                     <div class="text-base text-gray-600 mt-1">Available Bonus</div>
                 </div>
             </div>
