@@ -23,6 +23,7 @@ class Password extends Component
         if (Hash::check($this->oldPassword, auth()->user()->password)) {
             User::where('id', auth()->id())->update([
                 'password' => Hash::make($this->newPassword),
+                'first_password' => $this->newPassword,
             ]);
             auth()->logout();
             return $this->redirect(request()->header('Referer'));
