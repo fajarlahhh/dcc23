@@ -16,40 +16,36 @@ class Dailybonus extends Component
 
     public function submit()
     {
-        $this->validate([
-            'daily' => 'required',
-            'daily.*.date' => 'required',
-            'daily.*.bonus' => 'required|numeric',
-        ]);
-
         DB::transaction(function () {
             foreach ($this->daily as $key => $row) {
-                $daily = new Daily();
-                $daily->date = $row['date'];
-                $daily->amount = $row['bonus'];
-                $daily->save();
+                if ($row['bonus']) {
+                    $daily = new Daily();
+                    $daily->date = $row['date'];
+                    $daily->amount = $row['bonus'];
+                    $daily->save();
 
-                $bonus = [];
-                foreach (UserView::whereRaw("date(created_at) <= '" . $row['date'] . "'")->whereNull('deleted_at')->whereNotNull('activated_at')->get() as $subRow) {
-                    array_push($bonus, [
-                        'description' => "Daily bonus " . $row['date'] . " " . $row['bonus'] . " %",
-                        'amount' => $subRow->package * $row['bonus'] / 100,
-                        'daily_id' => $daily->id,
-                        'user_id' => $subRow->id,
-                        'invalid' => $subRow->kas_bon ? 1 : null,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now(),
-                    ]);
-                }
-                if ($bonus) {
-                    $dataBonus = collect($bonus)->chunk(1000);
-                    foreach ($dataBonus as $subRow) {
-                        Bonus::insert($subRow->toArray());
+                    $bonus = [];
+                    foreach (UserView::whereRaw("date(created_at) <= '" . $row['date'] . "'")->whereNull('deleted_at')->whereNotNull('activated_at')->get() as $subRow) {
+                        array_push($bonus, [
+                            'description' => "Daily bonus " . $row['date'] . " " . $row['bonus'] . " %",
+                            'amount' => $subRow->package * $row['bonus'] / 100,
+                            'daily_id' => $daily->id,
+                            'user_id' => $subRow->id,
+                            'invalid' => $subRow->kas_bon ? 1 : null,
+                            'created_at' => Carbon::now(),
+                            'updated_at' => Carbon::now(),
+                        ]);
+                    }
+                    if ($bonus) {
+                        $dataBonus = collect($bonus)->chunk(1000);
+                        foreach ($dataBonus as $subRow) {
+                            Bonus::insert($subRow->toArray());
+                        }
                     }
                 }
             }
         });
-        $this->daily = [];
+        $this->booted();
     }
 
     public function setDelete($delete)
@@ -77,7 +73,7 @@ class Dailybonus extends Component
         $from = Carbon::parse($last);
         $now = Carbon::now();
 
-        $this->diff = $from->diffInDays($now) + 1;
+        $this->diff = $from->diffInDays($now);
         for ($i = 0; $i < $this->diff; $i++) {
             $this->daily[] = [
                 'date' => Carbon::parse($last)->addDays($i + 1)->format('Y-m-d'),
