@@ -19,7 +19,7 @@
                             <tr>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">#</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Username</th>
-                                <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">First Password</th>
+                                <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Show Password</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Name</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Wallet</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Package</th>
