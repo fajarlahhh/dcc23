@@ -21,6 +21,9 @@ Route::get('/registration/{upline}/{team}', function (Request $req) {
     ]);
 });
 
+Route::get('/', \App\Http\Livewire\Home::class);
+Route::get('/{sponsor}/{team}', \App\Http\Livewire\Home::class);
+
 Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['notactive']], function () {
@@ -28,7 +31,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware' => ['active']], function () {
-        Route::get('/', \App\Http\Livewire\Dashboard::class);
         Route::get('/dashboard', \App\Http\Livewire\Dashboard::class);
         Route::get('/balance', \App\Http\Livewire\Balance::class);
         Route::get('/downline', \App\Http\Livewire\Downline::class);

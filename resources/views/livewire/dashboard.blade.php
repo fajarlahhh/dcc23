@@ -44,8 +44,8 @@
                         Left Referral
                     </div>
                     <input type="text" class="form-control" placeholder="Price" disabled
-                        value="{{ url('/registration/' . auth()->user()->username . '/l') }}">
-                    <button onclick="copyUrl('{{ url('/registration/' . auth()->user()->username . '/l') }}')"
+                        value="{{ url('/' . auth()->user()->username . '/l') }}">
+                    <button onclick="copyUrl('{{ url('/' . auth()->user()->username . '/l') }}')"
                         class="btn input-group-text">
                         Copy
                     </button>
@@ -60,8 +60,8 @@
                         Right Referral
                     </div>
                     <input type="text" class="form-control" placeholder="Price" disabled
-                        value="{{ url('/registration/' . auth()->user()->username . '/r') }}">
-                    <button onclick="copyUrl('{{ url('/registration/' . auth()->user()->username . '/r') }}')"
+                        value="{{ url('/' . auth()->user()->username . '/r') }}">
+                    <button onclick="copyUrl('{{ url('/' . auth()->user()->username . '/r') }}')"
                         class="btn input-group-text">
                         Copy
                     </button>
