@@ -291,7 +291,7 @@
         <!-- end #action-box -->
 
         <!-- begin #pricing -->
-        <div id="pricing" class="content" data-scrollview="true">
+        <div id="pricing" class="content text-center" data-scrollview="true">
             <!-- begin container -->
             <h2 class="content-title">Our Package</h2>
             <!-- begin pricing-table -->
@@ -320,6 +320,9 @@
                     @endforeach
                 </ul>
             </div>
+            <br>
+            <a href="/registration/{{ $sponsor }}/{{ $team }}" class="btn btn-success"
+                data-animation="true" data-animation-type="fadeInUp">Sign Up Now</a>
             <!-- end container -->
         </div>
         <!-- end #pricing -->
