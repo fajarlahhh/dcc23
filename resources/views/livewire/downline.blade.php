@@ -45,6 +45,8 @@
                 </h2>
             </div>
             <div class="intro-y sm:gap-6 gap-y-6 box px-5 py-8 ">
+                <input type="text" class="form-control" wire:model.lazy="username" autocomplete="off"
+                    placeholder="Search Username">
                 <table class="table">
                     <tr>
                         @if ($network)

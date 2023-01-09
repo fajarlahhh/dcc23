@@ -12,8 +12,8 @@ use Livewire\WithPagination;
 class Datamember extends Component
 {
     use WithPagination;
-    public $cari, $reset, $delete, $restore, $exist = 1;
-    protected $queryString = ['cari', 'exist'];
+    public $search, $reset, $delete, $restore, $exist = 1, $activeDate, $active = 1;
+    protected $queryString = ['search', 'exist'];
 
     public function setReset($reset = null)
     {
@@ -54,6 +54,13 @@ class Datamember extends Component
         $this->restore = null;
     }
 
+    public function updatedActive()
+    {
+        if ($this->active == 1) {
+            $this->activeDate = null;
+        }
+    }
+
     public function render()
     {
         return view('livewire.datamember', [
@@ -62,7 +69,7 @@ class Datamember extends Component
                 '*',
                 DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.network is not null and left(uv.network, length(concat(user_view.id, "l")))=concat(user_view.id, "l") ) valid_left'),
                 DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.network is not null and left(uv.network, length(concat(user_view.id, "r")))=concat(user_view.id, "r") ) valid_right')
-            )->whereNotNull('upline_id')->where('username', 'like', '%' . $this->cari . '%')->paginate(10),
+            )->when($this->active == 2, fn($q) => $q->where('activated_at', 'like', $this->activeDate . '%'))->whereNotNull('upline_id')->where('username', 'like', '%' . $this->search . '%')->paginate(10),
         ]);
     }
 }

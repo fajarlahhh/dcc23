@@ -7,10 +7,17 @@
                         Data Member
                     </h2>
                     <div class="w-full sm:w-auto flex items-center sm:ml-auto mt-3 sm:mt-0">
-                        <select class="form-select mt-2 sm:mr-2" aria-label="Default select example" wire:model="exist">
-                            <option value="1">Exist</option>
-                            <option value="2">Deleted</option>
-                        </select>
+                        <select class="form-select mt-2 sm:mr-2" aria-label="Default select example" style="width: 100px"
+                            wire:model="active">
+                            <option value="1">All</option>
+                            <option value="2">By Date</option>
+                        </select>&nbsp;
+                        @if ($active == 2)
+                            <input class="form-control block mx-auto mt-2 mr-2" style="width: 160px" type="date"
+                                wire:model.lazy="activeDate" data-single-mode="true">
+                        @endif
+                        <input class="form-control block mx-auto mt-2 mr-2" style="width: 160px" type="text"
+                            placeholder="Search" wire:model.lazy="search" data-single-mode="true">
                     </div>
                 </div>
                 <div class="p-5 overflow-auto">

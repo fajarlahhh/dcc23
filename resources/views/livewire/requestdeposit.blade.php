@@ -34,6 +34,7 @@
                         <thead>
                             <tr>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">#</th>
+                                <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Datetime</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Username</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Name</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">From Wallet</th>
@@ -49,6 +50,8 @@
                                 <tr>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ ++$key }}</td>
+                                    <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
+                                        {{ $row->user->created_at }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->user->username }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
@@ -90,7 +93,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="5"
+                                <th colspan="6"
                                     class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-right">Total</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap text-right">
                                     {{ number_format($data->sum('amount')) }}</th>

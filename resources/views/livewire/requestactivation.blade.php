@@ -12,6 +12,7 @@
                         <thead>
                             <tr>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">#</th>
+                                <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Datetime</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Username</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Name</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Sponsor</th>
@@ -27,6 +28,8 @@
                                 <tr>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ ++$i }}</td>
+                                    <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
+                                        {{ $row->created_at }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->user->username }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
