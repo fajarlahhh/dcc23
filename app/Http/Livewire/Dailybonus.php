@@ -66,7 +66,7 @@ class Dailybonus extends Component
         $this->daily = [];
         $data = Daily::orderBy('date', 'desc')->get();
         if ($data->count() == 0) {
-            $last = date('Y-m-d', strtotime(User::whereNotNull('upline_id')->orderBy('id', 'desc')->first()->created_at));
+            $last = date('Y-m-d', strtotime(User::whereNotNull('upline_id')->orderBy('id', 'asc')->first()->created_at));
         } else {
             $last = Carbon::parse($data->first()->date)->format('Y-m-d');
         }
