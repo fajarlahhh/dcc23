@@ -21,8 +21,8 @@ class UserView extends Model
     {
         return $this->hasMany(UserView::class, 'upline_id')->with('invalidLeft')->with('invalidRight')->select(
             '*',
-            DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.network is not null and left(uv.network, length(concat(user_view.network, user_view.id, "l")))=concat(user_view.network, user_view.id, "l") ) valid_left'),
-            DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.network is not null and left(uv.network, length(concat(user_view.network, user_view.id, "r")))=concat(user_view.network, user_view.id, "r") ) valid_right'),
+            DB::raw('(select ifnull(sum(package_value * reinvest), 0) from user_view uv where uv.network is not null and left(uv.network, length(concat(user_view.network, user_view.id, "l")))=concat(user_view.network, user_view.id, "l") ) valid_left'),
+            DB::raw('(select ifnull(sum(package_value * reinvest), 0) from user_view uv where uv.network is not null and left(uv.network, length(concat(user_view.network, user_view.id, "r")))=concat(user_view.network, user_view.id, "r") ) valid_right'),
         );
     }
 

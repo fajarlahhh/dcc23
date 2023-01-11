@@ -67,8 +67,8 @@ class Datamember extends Component
             'i' => ($this->page - 1) * 10,
             'data' => UserView::with('upline')->with('sponsor')->with('invalidLeft')->with('invalidRight')->when($this->exist == 2, fn($q) => $q->whereNotNull('deleted_at'))->when($this->exist == 1, fn($q) => $q->whereNull('deleted_at'))->select(
                 '*',
-                DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.network is not null and left(uv.network, length(concat(user_view.id, "l")))=concat(user_view.id, "l") ) valid_left'),
-                DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.network is not null and left(uv.network, length(concat(user_view.id, "r")))=concat(user_view.id, "r") ) valid_right')
+                DB::raw('(select ifnull(sum(package_value * reinvest), 0) from user_view uv where uv.network is not null and left(uv.network, length(concat(user_view.id, "l")))=concat(user_view.id, "l") ) valid_left'),
+                DB::raw('(select ifnull(sum(package_value * reinvest), 0) from user_view uv where uv.network is not null and left(uv.network, length(concat(user_view.id, "r")))=concat(user_view.id, "r") ) valid_right')
             )->when($this->active == 2, fn($q) => $q->where('activated_at', 'like', $this->activeDate . '%'))->whereNotNull('upline_id')->where('username', 'like', '%' . $this->search . '%')->paginate(10),
         ]);
     }

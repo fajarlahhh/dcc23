@@ -67,8 +67,8 @@ class Requestactivation extends Component
             $idParent = str_replace(['r', 'l'], [';', ';'], $user->network);
             $dataParent = UserView::with('invalidLeft')->with('invalidRight')->select(
                 '*',
-                DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.activated_at is not null and left(uv.network, length(concat(user_view.network, user_view.id, "l")))=concat(user_view.network, user_view.id, "l") ) valid_left'),
-                DB::raw('(select ifnull(sum(package * reinvest), 0) from user_view uv where uv.activated_at is not null and left(uv.network, length(concat(user_view.network, user_view.id, "r")))=concat(user_view.network, user_view.id, "r") ) valid_right')
+                DB::raw('(select ifnull(sum(package_value * reinvest), 0) from user_view uv where uv.activated_at is not null and left(uv.network, length(concat(user_view.network, user_view.id, "l")))=concat(user_view.network, user_view.id, "l") ) valid_left'),
+                DB::raw('(select ifnull(sum(package_value * reinvest), 0) from user_view uv where uv.activated_at is not null and left(uv.network, length(concat(user_view.network, user_view.id, "r")))=concat(user_view.network, user_view.id, "r") ) valid_right')
             )->with('package')->whereIn('id', explode(';', $idParent))->orderBy('id', 'desc')->get()->map(function ($q) {
                 $validLeft = (int) $q->valid_left - $q->invalidLeft->sum('amount');
                 $validRight = (int) $q->valid_right - $q->invalidRight->sum('amount');
