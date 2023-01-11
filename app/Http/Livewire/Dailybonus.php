@@ -48,7 +48,7 @@ class Dailybonus extends Component
         $this->booted();
     }
 
-    public function setDelete($delete)
+    public function setDelete($delete = null)
     {
         $this->delete = $delete;
     }
