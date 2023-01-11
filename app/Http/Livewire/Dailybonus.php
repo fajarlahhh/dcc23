@@ -32,8 +32,8 @@ class Dailybonus extends Component
                             'daily_id' => $daily->id,
                             'user_id' => $subRow->id,
                             'invalid' => $subRow->kas_bon ? 1 : null,
-                            'created_at' => Carbon::now(),
-                            'updated_at' => Carbon::now(),
+                            'created_at' => $row['date'],
+                            'updated_at' => $row['date'],
                         ]);
                     }
                     if ($bonus) {
