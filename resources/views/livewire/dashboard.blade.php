@@ -23,14 +23,14 @@
                     </div>
                     <div class="text-center">Available
                         :
-                        {{ number_format(auth()->user()->package->benefit +auth()->user()->bonus->whereNull('invalid')->where('amount', '<', 0)->sum('amount')) }}
+                        {{ number_format(auth()->user()->package->benefit +auth()->user()->bonus->whereNull('invalid')->where('amount', '<', 0)->sum('amount'),2) }}
                         / {{ number_format(auth()->user()->package->benefit) }}</div>
                 </div>
                 <a href="/bonus" class="btn w-100 btn-success dark:text-dark mt-6 sm:mt-10">Current Bonus
                     :
-                    {{ number_format(auth()->user()->bonus->whereNull('invalid')->sum('amount')) }}</a>
+                    {{ number_format(auth()->user()->bonus->whereNull('invalid')->sum('amount'),2) }}</a>
                 <a href="/balance" class="btn w-100 btn-warning dark:text-dark mt-6 sm:mt-10">Balance :
-                    {{ number_format(auth()->user()->balance->sum('amount')) }}</a>
+                    {{ number_format(auth()->user()->balance->sum('amount'),2) }}</a>
                 <a href="/downline" class="btn w-100 btn-twitter dark:text-dark mt-6 sm:mt-10">Downline :
                     {{ \App\Models\User::where('network', 'like', (auth()->user()->network ?: auth()->id()) . 'l%')->count() + \App\Models\User::where('network', 'like', (auth()->user()->network ?: auth()->id()) . 'r%')->count() }}</a>
             </div>

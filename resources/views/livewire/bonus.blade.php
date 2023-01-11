@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="text-3xl font-bold leading-8 mt-6">
-                        {{ number_format(auth()->user()->bonus->whereNull('invalid')->sum('amount')) }}</div>
+                        {{ number_format(auth()->user()->bonus->whereNull('invalid')->sum('amount'),2) }}</div>
                     <div class="text-base text-gray-600 mt-1">Available Bonus</div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                                 {{ \Carbon\Carbon::parse($row->created_at)->diffForHumans() }}</div>
                         </div>
                         <div class="{{ $row->amount > 0 ? 'text-theme-10' : 'text-theme-24' }}">
-                            {{ number_format($row->amount) }}</div>
+                            {{ number_format($row->amount, 2) }}</div>
                     </div>
                 </div>
             @endforeach
@@ -122,7 +122,7 @@
                                 {{ \Carbon\Carbon::parse($row->created_at)->diffForHumans() }}</div>
                         </div>
                         <div class="{{ $row->processed_at ? 'text-theme-10' : 'text-theme-22' }}">
-                            {{ number_format($row->amount) }}</div>
+                            {{ number_format($row->amount, 2) }}</div>
                     </div>
                 </div>
             @endforeach
