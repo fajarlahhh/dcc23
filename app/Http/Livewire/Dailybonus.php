@@ -31,7 +31,7 @@ class Dailybonus extends Component
                             'amount' => $subRow->package_value * $row['bonus'] / 100,
                             'daily_id' => $daily->id,
                             'user_id' => $subRow->id,
-                            'invalid' => $subRow->kas_bon ? 1 : null,
+                            'invalid' => $subRow->kas_bon,
                             'created_at' => $row['date'],
                             'updated_at' => $row['date'],
                         ]);
