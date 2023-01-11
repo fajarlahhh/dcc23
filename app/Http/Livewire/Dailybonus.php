@@ -25,7 +25,7 @@ class Dailybonus extends Component
                     $daily->save();
 
                     $bonus = [];
-                    foreach (UserView::whereRaw("date(created_at) <= '" . $row['date'] . "'")->whereNull('deleted_at')->whereNotNull('activated_at')->get() as $subRow) {
+                    foreach (UserView::whereRaw("date(activated_at) <= '" . $row['date'] . "'")->whereNull('deleted_at')->whereNotNull('activated_at')->get() as $subRow) {
                         array_push($bonus, [
                             'description' => "Daily bonus " . $row['date'] . " " . $row['bonus'] . " %",
                             'amount' => $subRow->package_value * $row['bonus'] / 100,
