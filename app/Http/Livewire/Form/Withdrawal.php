@@ -80,7 +80,7 @@ class Withdrawal extends Component
                     $withdrawal->save();
 
                     $bonus = new Bonus();
-                    $bonus->description = 'Withdrawal to ' . $this->destination;
+                    $bonus->description = 'Withdrawal to wallet';
                     $bonus->amount = -$this->amount;
                     $bonus->withdrawal_id = $withdrawal->id;
                     $bonus->user_id = auth()->id();
