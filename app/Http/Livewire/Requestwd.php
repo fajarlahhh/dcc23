@@ -36,7 +36,7 @@ class Requestwd extends Component
     {
         return view('livewire.requestwd', [
             // 'i' => ($this->page - 1) * 10,
-            'data' => Withdrawal::with('user')->when($this->status == 1, fn($q) => $q->whereNull('processed_at'))->when($this->status == 2, fn($q) => $q->where('processed_at', 'like', $this->year . '-' . $this->month . '%'))->get(),
+            'data' => Withdrawal::with('user')->when($this->status == 1, fn($q) => $q->whereNull('processed_at'))->when($this->status == 2, fn($q) => $q->where('processed_at', 'like', $this->year . '-' . $this->month . '%'))->orderBy('created_at')->get(),
         ]);
     }
 }

@@ -51,7 +51,7 @@
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ ++$key }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
-                                        {{ $row->user->created_at }}</td>
+                                        {{ $row->created_at }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->user->username }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">

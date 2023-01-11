@@ -181,7 +181,7 @@ class Requestactivation extends Component
     {
         return view('livewire.requestactivation', [
             'i' => ($this->page - 1) * 10,
-            'data' => Deposit::with('user')->whereNotNull('registration')->whereNull('processed_at')->paginate(10),
+            'data' => Deposit::with('user')->whereNotNull('registration')->whereNull('processed_at')->orderBy('created_at')->paginate(10),
         ]);
     }
 }
