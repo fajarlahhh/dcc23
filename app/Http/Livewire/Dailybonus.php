@@ -28,7 +28,7 @@ class Dailybonus extends Component
                     foreach (UserView::whereRaw("date(created_at) <= '" . $row['date'] . "'")->whereNull('deleted_at')->whereNotNull('activated_at')->get() as $subRow) {
                         array_push($bonus, [
                             'description' => "Daily bonus " . $row['date'] . " " . $row['bonus'] . " %",
-                            'amount' => $subRow->package->value * $row['bonus'] / 100,
+                            'amount' => $subRow->package_value * $row['bonus'] / 100,
                             'daily_id' => $daily->id,
                             'user_id' => $subRow->id,
                             'invalid' => $subRow->kas_bon ? 1 : null,

@@ -78,7 +78,7 @@ class Requestactivation extends Component
                     'username' => $q->username,
                     'upline_id' => $q->upline_id,
                     'network' => $q->network,
-                    'package' => $q->package,
+                    'package' => $q->package_value,
                     'position' => $q->network ? substr($q->network, -1) : null,
                     'pair' => $validLeft > 0 && $validRight > 0 ? 1 : 0,
                     'valid_left' => $validLeft,
