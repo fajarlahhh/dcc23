@@ -54,8 +54,7 @@ class Requestactivation extends Component
                     'updated_at' => now(),
                 ];
             } else {
-                // $upline = User::where('network', 'like', $user->sponsor->network . $user->sponsor_id . $user->team . '%')->where('network', 'not like', '%' . ($this->team == 'l' ? 'r' : 'l') . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
-                $upline = User::where('network', 'not like', '%' . ($this->team == 'l' ? 'r' : 'l') . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
+                $upline = User::where('network', 'like', $user->sponsor->network . $user->sponsor_id . $user->team . '%')->where('network', 'not like', '%' . ($this->team == 'l' ? 'r' : 'l') . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
 
                 $user->network = $upline ? $upline->network . $upline->getKey() . $user->team : $user->sponsor->network . $user->sponsor_id . $user->team;
                 $user->reinvest = 1;
