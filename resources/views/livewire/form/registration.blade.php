@@ -47,6 +47,7 @@
                 </div>
             </div>
             <x-alert />
+            <x-info />
         </div>
         <div class="modal-footer">
             <div class="intro-x text-center xl:text-left">

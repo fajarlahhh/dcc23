@@ -14,7 +14,17 @@ use Livewire\WithPagination;
 class Requestactivation extends Component
 {
     use WithPagination;
-    public $cari, $activate, $delete;
+    public $cari, $activate, $delete, $upline;
+
+    public function upline($id, $team)
+    {
+        $downline = User::where('upline_id', $id)->where('team', $team)->get();
+        if ($downline->count() > 0) {
+            $this->upline($downline->first()->getKey(), $team);
+        } else {
+            $this->upline = User::find($id);
+        }
+    }
 
     public function setActivate($activate = null)
     {
@@ -54,11 +64,10 @@ class Requestactivation extends Component
                     'updated_at' => now(),
                 ];
             } else {
-                $upline = User::where('network', 'like', $user->sponsor->network . $user->sponsor_id . $user->team . '%')->where('network', 'not like', '%' . ($this->team == 'l' ? 'r' : 'l') . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
-
-                $user->network = $upline ? $upline->network . $upline->getKey() . $user->team : $user->sponsor->network . $user->sponsor_id . $user->team;
+                $this->upline($user->sponsor_id, $user->team);
+                $user->network = $this->upline ? $this->upline->network . $this->upline->getKey() . $user->team : $user->sponsor->network . $user->sponsor_id . $user->team;
                 $user->reinvest = 1;
-                $user->upline_id = $upline ? $upline->getKey() : $user->sponsor_id;
+                $user->upline_id = $this->upline ? $this->upline->getKey() : $user->sponsor_id;
             }
             $user->activated_at = now();
             $user->processed_at = now();

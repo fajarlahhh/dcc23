@@ -16,7 +16,17 @@ use Livewire\Component;
 
 class Registration extends Component
 {
-    public $pin, $username, $name, $team = 'l', $password, $package, $email, $phone;
+    public $upline, $pin, $username, $name, $team = 'l', $password, $package, $email, $phone;
+
+    public function upline($id, $team)
+    {
+        $downline = User::where('upline_id', $id)->where('team', $team)->get();
+        if ($downline->count() > 0) {
+            $this->upline($downline->first()->getKey(), $team);
+        } else {
+            $this->upline = User::find($id);
+        }
+    }
 
     public function submit()
     {
@@ -32,7 +42,7 @@ class Registration extends Component
 
         try {
             DB::transaction(function () {
-                $upline = User::where('network', 'like', auth()->user()->network . auth()->id() . $this->team . '%')->where('network', 'not like', '%' . ($this->team == 'l' ? 'r' : 'l') . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
+                $this->upline(auth()->id(), $this->team);
 
                 $user = new User();
                 $user->username = $this->username;
@@ -41,10 +51,10 @@ class Registration extends Component
                 $user->name = $this->name;
                 $user->email = $this->email;
                 $user->team = $this->team;
-                $user->network = $upline ? $upline->network . $upline->getKey() . $this->team : auth()->user()->network . auth()->id() . $this->team;
+                $user->network = $this->upline ? $this->upline->network . $this->upline->getKey() . $this->team : auth()->user()->network . auth()->id() . $this->team;
                 $user->phone = $this->phone;
                 $user->reinvest = 1;
-                $user->upline_id = $upline ? $upline->getKey() : auth()->id();
+                $user->upline_id = $this->upline ? $this->upline->getKey() : auth()->id();
                 $user->sponsor_id = auth()->id();
                 $user->package_id = Package::where('value', $this->package)->first()->getKey();
                 $user->activated_at = now();
