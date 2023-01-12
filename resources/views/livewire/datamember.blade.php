@@ -57,7 +57,7 @@
                                         {{ substr($row->wallet, 0, 4) . '....' . substr($row->wallet, -4) }}
                                     </td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
-                                        {{ $row->package }}</td>
+                                        {{ $row->package_value }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->upline->username }}
                                     </td>
