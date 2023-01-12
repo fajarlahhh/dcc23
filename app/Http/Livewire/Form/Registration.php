@@ -18,11 +18,11 @@ class Registration extends Component
 {
     public $upline, $pin, $username, $name, $team = 'l', $password, $package, $email, $phone;
 
-    public function upline($id, $team)
+    public function setUpline($id, $team)
     {
         $downline = User::where('upline_id', $id)->where('team', $team)->get();
         if ($downline->count() > 0) {
-            $this->upline($downline->first()->getKey(), $team);
+            $this->setUpline($downline->first()->getKey(), $team);
         } else {
             $this->upline = User::find($id);
         }
@@ -42,7 +42,7 @@ class Registration extends Component
 
         try {
             DB::transaction(function () {
-                $this->upline(auth()->id(), $this->team);
+                $this->setUpline(auth()->id(), $this->team);
 
                 $user = new User();
                 $user->username = $this->username;

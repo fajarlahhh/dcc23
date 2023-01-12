@@ -16,11 +16,11 @@ class Requestactivation extends Component
     use WithPagination;
     public $cari, $activate, $delete, $upline;
 
-    public function upline($id, $team)
+    public function setUpline($id, $team)
     {
         $downline = User::where('upline_id', $id)->where('team', $team)->get();
         if ($downline->count() > 0) {
-            $this->upline($downline->first()->getKey(), $team);
+            $this->setUpline($downline->first()->getKey(), $team);
         } else {
             $this->upline = User::find($id);
         }
@@ -64,7 +64,7 @@ class Requestactivation extends Component
                     'updated_at' => now(),
                 ];
             } else {
-                $this->upline($user->sponsor_id, $user->team);
+                $this->setUpline($user->sponsor_id, $user->team);
                 $user->network = $this->upline ? $this->upline->network . $this->upline->getKey() . $user->team : $user->sponsor->network . $user->sponsor_id . $user->team;
                 $user->reinvest = 1;
                 $user->upline_id = $this->upline ? $this->upline->getKey() : $user->sponsor_id;
