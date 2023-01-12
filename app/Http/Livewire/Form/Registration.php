@@ -32,7 +32,8 @@ class Registration extends Component
 
         try {
             DB::transaction(function () {
-                $upline = User::where('network', 'like', auth()->user()->network . auth()->id() . $this->team . '%')->where('network', 'not like', '%' . ($this->team == 'l' ? 'r' : 'l') . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
+                // $upline = User::where('network', 'like', auth()->user()->network . auth()->id() . $this->team . '%')->where('network', 'not like', '%' . ($this->team == 'l' ? 'r' : 'l') . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
+                $upline = User::where('network', 'not like', '%' . ($this->team == 'l' ? 'r' : 'l') . '%')->orderBy(DB::raw('CHAR_LENGTH(network)'), 'DESC')->first();
 
                 $user = new User();
                 $user->username = $this->username;
