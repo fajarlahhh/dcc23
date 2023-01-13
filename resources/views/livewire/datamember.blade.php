@@ -27,6 +27,7 @@
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">#</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Username</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Show Password</th>
+                                <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">PIN</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Name</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Wallet</th>
                                 <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Package</th>
@@ -51,6 +52,8 @@
                                         {{ $row->username }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->first_password }}</td>
+                                    <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
+                                        {{ $row->pin }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->name }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
