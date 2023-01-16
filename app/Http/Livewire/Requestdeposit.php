@@ -31,17 +31,19 @@ class Requestdeposit extends Component
 
     public function done()
     {
-        DB::transaction(function ($q) {
-            $deposit = Deposit::findOrFail($this->process);
-            $deposit->processed_at = now();
-            $deposit->save();
+        if (Deposit::findOrFail($this->process)->processed_at == null) {
+            DB::transaction(function ($q) {
+                $deposit = Deposit::findOrFail($this->process);
+                $deposit->processed_at = now();
+                $deposit->save();
 
-            $balance = new Balance();
-            $balance->description = "Top up";
-            $balance->amount = $deposit->amount;
-            $balance->user_id = $deposit->user_id;
-            $balance->save();
-        });
+                $balance = new Balance();
+                $balance->description = "Top up";
+                $balance->amount = $deposit->amount;
+                $balance->user_id = $deposit->user_id;
+                $balance->save();
+            });
+        }
     }
 
     public function mount()
