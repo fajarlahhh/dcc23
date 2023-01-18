@@ -11,14 +11,15 @@ class Activation extends Component
 {
     use MasteruserTrait;
 
-    public $fromWallet;
+    public $fromWallet, $txid;
 
     public function submit()
     {
-        $this->validate(['fromWallet' => 'required']);
+        $this->validate(['fromWallet' => 'required', 'txid' => 'required']);
 
         $deposit = new Deposit();
         $deposit->from_wallet = $this->fromWallet;
+        $deposit->txid = $this->txid;
         $deposit->to_wallet = $this->masterUser->wallet;
         $deposit->amount = auth()->user()->package->value;
         $deposit->registration = 1;
