@@ -48,12 +48,6 @@
                     <div class="menu__title"> Downline </div>
                 </a>
             </li>
-            <li>
-                <a href="/renewal" class="menu">
-                    <div class="menu__icon"> <i data-feather="refresh-cw"></i> </div>
-                    <div class="menu__title"> Reinvest </div>
-                </a>
-            </li>
             @if (auth()->user()->upline_id == null)
                 <hr>
                 <li>
@@ -175,12 +169,6 @@
                         <a href="/downline" class="side-menu">
                             <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                             <div class="side-menu__title"> Downline </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/renewal" class="side-menu">
-                            <div class="side-menu__icon"> <i data-feather="refresh-cw"></i> </div>
-                            <div class="side-menu__title"> Reinvest </div>
                         </a>
                     </li>
                     @if (auth()->user()->upline_id == null)
