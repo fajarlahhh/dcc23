@@ -48,6 +48,12 @@
                     <div class="menu__title"> Downline </div>
                 </a>
             </li>
+            <li>
+                <a href="/renewal" class="menu">
+                    <div class="menu__icon"> <i data-feather="refresh-cw"></i> </div>
+                    <div class="menu__title"> Reinvest </div>
+                </a>
+            </li>
             @if (auth()->user()->upline_id == null)
                 <hr>
                 <li>
@@ -171,6 +177,12 @@
                             <div class="side-menu__title"> Downline </div>
                         </a>
                     </li>
+                    <li>
+                        <a href="/renewal" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="refresh-cw"></i> </div>
+                            <div class="side-menu__title"> Reinvest </div>
+                        </a>
+                    </li>
                     @if (auth()->user()->upline_id == null)
                         <hr>
                         <li>
@@ -217,8 +229,8 @@
                     @livewire('form.createwallet')
                 @endif
                 @if (auth()->user()->package->benefit +
-                    auth()->user()->bonus->where('amount', '<', 0)->sum('amount') <
-                    auth()->user()->package->minimum_withdrawal)
+                        auth()->user()->bonus->where('amount', '<', 0)->sum('amount') <
+                        auth()->user()->package->minimum_withdrawal)
                     @livewire('form.reinvest')
                 @endif
                 @livewire('form.createpassword')
