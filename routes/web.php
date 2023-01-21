@@ -35,7 +35,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/balance', \App\Http\Livewire\Balance::class);
         Route::get('/downline', \App\Http\Livewire\Downline::class);
         Route::get('/bonus', \App\Http\Livewire\Bonus::class);
-        Route::get('/renewal', \App\Http\Livewire\Renewal::class);
+        Route::get('/history', \App\Http\Livewire\History::class);
+        // Route::get('/renewal', \App\Http\Livewire\Renewal::class);
         Route::group(['middleware' => ['administrator']], function () {
             Route::get('/dailybonus', \App\Http\Livewire\Dailybonus::class);
             Route::get('/requestdeposit', \App\Http\Livewire\Requestdeposit::class);

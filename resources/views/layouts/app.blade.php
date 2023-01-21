@@ -171,6 +171,12 @@
                             <div class="side-menu__title"> Downline </div>
                         </a>
                     </li>
+                    <li>
+                        <a href="/history" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="book-open"></i> </div>
+                            <div class="side-menu__title"> History </div>
+                        </a>
+                    </li>
                     @if (auth()->user()->upline_id == null)
                         <hr>
                         <li>
