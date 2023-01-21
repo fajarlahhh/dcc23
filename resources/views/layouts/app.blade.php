@@ -48,6 +48,12 @@
                     <div class="menu__title"> Downline </div>
                 </a>
             </li>
+            <li>
+                <a href="/history" class="menu">
+                    <div class="menu__icon"> <i data-feather="book-open"></i> </div>
+                    <div class="menu__title"> History </div>
+                </a>
+            </li>
             @if (auth()->user()->upline_id == null)
                 <hr>
                 <li>
