@@ -15,15 +15,17 @@ class Activation extends Component
 
     public function submit()
     {
-        $this->validate(['fromWallet' => 'required', 'txid' => 'required']);
+        if (!auth()->user()->network) {
+            $this->validate(['fromWallet' => 'required', 'txid' => 'required']);
 
-        $deposit = new Deposit();
-        $deposit->from_wallet = $this->fromWallet;
-        $deposit->txid = $this->txid;
-        $deposit->to_wallet = $this->masterUser->wallet;
-        $deposit->amount = auth()->user()->package->value;
-        $deposit->registration = 1;
-        $deposit->save();
+            $deposit = new Deposit();
+            $deposit->from_wallet = $this->fromWallet;
+            $deposit->txid = $this->txid;
+            $deposit->to_wallet = $this->masterUser->wallet;
+            $deposit->amount = auth()->user()->package->value;
+            $deposit->registration = 1;
+            $deposit->save();
+        }
 
         return $this->redirect(request()->header('Referer'));
     }

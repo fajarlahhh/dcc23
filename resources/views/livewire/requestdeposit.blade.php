@@ -57,7 +57,8 @@
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->user->name }}</td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
-                                        {{ $row->from_wallet }}
+                                        {{ $row->from_wallet }}<br>
+                                        {{ $row->txid }}
                                     </td>
                                     <td class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
                                         {{ $row->to_wallet }}
