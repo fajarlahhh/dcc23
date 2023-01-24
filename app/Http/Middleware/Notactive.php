@@ -16,7 +16,7 @@ class Notactive
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->activated_at) {
+        if (auth()->user()->activated_at || auth()->user()->network) {
             return abort(403, 'Unauthorized action.');
         }
         return $next($request);
