@@ -16,7 +16,7 @@ class Active
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->user()->network) {
+        if (!auth()->user()->network && !auth()->user()->activated_at) {
             return redirect('/activation');
         }
         return $next($request);
