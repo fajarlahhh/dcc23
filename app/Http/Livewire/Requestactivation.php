@@ -51,6 +51,7 @@ class Requestactivation extends Component
 
             if ($deposit->registration == 2) {
                 $user->reinvest = $user->reinvest + 1;
+                $user->kas_bon = null;
 
                 $currentBonus = round($user->bonus->sum('amount') / 2);
 
