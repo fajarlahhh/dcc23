@@ -54,7 +54,7 @@
                     <div class="menu__title"> History </div>
                 </a>
             </li>
-            @if (auth()->user()->upline_id == null)
+            {{-- @if (auth()->user()->upline_id == null)
                 <hr>
                 <li>
                     <a href="/dailybonus" class="menu">
@@ -87,7 +87,7 @@
                         <div class="menu__title"> Request WD </div>
                     </a>
                 </li>
-            @endif
+            @endif --}}
         </ul>
     </div>
     <div class="top-bar-boxed border-b border-theme-2 -mt-7 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 md:pt-0 mb-12">
@@ -183,7 +183,7 @@
                             <div class="side-menu__title"> History </div>
                         </a>
                     </li>
-                    @if (auth()->user()->upline_id == null)
+                    {{-- @if (auth()->user()->upline_id == null)
                         <hr>
                         <li>
                             <a href="/dailybonus" class="side-menu">
@@ -216,7 +216,7 @@
                                 <div class="side-menu__title"> Request WD </div>
                             </a>
                         </li>
-                    @endif
+                    @endif --}}
                 </ul>
             </nav>
             <!-- END: Side Menu -->
