@@ -144,8 +144,8 @@ class Registration extends Component
                     if (is_null($row['activated_at'])) {
                         array_push($invalid, [
                             'user_id' => $row['id'],
-                            'downline_id' => $user->getKey,
-                            'amount' => $this->package,
+                            'downline_id' => $user->getKey(),
+                            'value' => $this->package,
                             'team' => substr($network, -1),
                             'created_at' => now(),
                             'updated_at' => now(),
