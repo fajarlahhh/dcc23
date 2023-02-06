@@ -169,7 +169,7 @@
                         <form wire:submit.prevent="doneDeposit">
                             <input wire:model.defer="depositWallet" class="form-control" required minlength="40"
                                 placeholder="Enter your origin wallet" />
-                            <input wire:model.defer="txid" class="form-control" required minlength="40"
+                            <input wire:model.defer="txid" class="form-control mt-3" required minlength="40"
                                 placeholder="Enter txid here" />
                             <input type="submit" class="btn btn-success mt-3 m-r-20" value="Done">
                             <button type="button" class="btn btn-danger mt-3"
