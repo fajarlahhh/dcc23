@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Balance extends Component
 {
-    public $depositWallet;
+    public $depositWallet, $txid;
 
     public function doneDeposit()
     {
@@ -19,6 +19,7 @@ class Balance extends Component
         try {
             $deposit = auth()->user()->waitingTransferDeposit()->first();
             $deposit->from_wallet = $this->depositWallet;
+            $deposit->txid = $this->txid;
             $deposit->save();
 
             return $this->redirect('/balance');

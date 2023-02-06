@@ -43,9 +43,9 @@
                     <tr>
                         <td colspan="2" class="border border-b-2 dark:border-dark-5 whitespace-nowrapt text-center">
                             <form wire:submit.prevent="submit">
-                                <input wire:model.defer="fromWallet" class="form-control" required minlength="10"
+                                <input wire:model.defer="fromWallet" class="form-control" required minlength="40"
                                     placeholder="Enter your origin wallet" />
-                                <input wire:model.defer="txid" class="form-control" required minlength="10"
+                                <input wire:model.defer="txid" class="form-control" required minlength="40"
                                     placeholder="Enter txid here" />
                                 <input type="submit" class="btn btn-success mt-3 m-r-20" value="Done">
                                 <button type="button" class="btn btn-danger mt-3"

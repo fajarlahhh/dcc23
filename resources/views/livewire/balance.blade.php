@@ -20,8 +20,8 @@
                             </svg>
                             <div class="ml-auto">
                                 @if (auth()->user()->package->benefit +
-                                    auth()->user()->bonus->where('amount', '<', 0)->sum('amount') >
-                                    auth()->user()->package->minimum_withdrawal)
+                                        auth()->user()->bonus->where('amount', '<', 0)->sum('amount') >
+                                        auth()->user()->package->minimum_withdrawal)
                                     <a href="javascript:;" data-toggle="modal" data-target="#modal-deposit"
                                         class="btn btn-warning w-24">Deposit</a>
                                     <a href="javascript:;" data-toggle="modal" data-target="#modal-sendbalance"
@@ -122,8 +122,8 @@
             </div>
         </div>
         @if (auth()->user()->package->benefit +
-            auth()->user()->bonus->where('amount', '<', 0)->sum('amount') >
-            auth()->user()->package->minimum_withdrawal)
+                auth()->user()->bonus->where('amount', '<', 0)->sum('amount') >
+                auth()->user()->package->minimum_withdrawal)
             <x-modal title='Deposit'>
                 @livewire('form.deposit')
             </x-modal>
@@ -167,8 +167,10 @@
                 <tr>
                     <td colspan="2" class="border border-b-2 dark:border-dark-5 whitespace-nowrapt text-center">
                         <form wire:submit.prevent="doneDeposit">
-                            <input wire:model.defer="depositWallet" class="form-control" required minlength="10"
+                            <input wire:model.defer="depositWallet" class="form-control" required minlength="40"
                                 placeholder="Enter your origin wallet" />
+                            <input wire:model.defer="txid" class="form-control" required minlength="40"
+                                placeholder="Enter txid here" />
                             <input type="submit" class="btn btn-success mt-3 m-r-20" value="Done">
                             <button type="button" class="btn btn-danger mt-3"
                                 wire:click="cancelDeposit({{ auth()->user()->waitingTransferDeposit()->first()->getKey() }})">Cancel</button>
