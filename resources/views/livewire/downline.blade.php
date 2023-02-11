@@ -20,8 +20,8 @@
                         </svg>
                         <div class="ml-auto">
                             @if (auth()->user()->package->benefit +
-                                auth()->user()->bonus->where('amount', '<', 0)->sum('amount') >
-                                auth()->user()->package->minimum_withdrawal)
+                                    auth()->user()->bonus->where('amount', '<', 0)->sum('amount') >
+                                    auth()->user()->package->minimum_withdrawal)
                                 <a href="javascript:;" data-toggle="modal" data-target="#modal-registration"
                                     class="btn btn-success w-24">Registration</a>
                             @endif
@@ -44,188 +44,191 @@
                     Network
                 </h2>
             </div>
-            <div class="intro-y sm:gap-6 gap-y-6 box px-5 py-8 ">
+            <div
+                class="intro-y sm:gap-6 gap-y-6 box px-5 py-8 table-                                                                                                                                                                                                                                                                                                                                                                                                                           ">
                 <input type="text" class="form-control" wire:model.lazy="username" autocomplete="off"
                     placeholder="Search Username">
-                <table class="table">
-                    <tr>
-                        @if ($network)
-                            <td colspan="4" class="text-center border-b dark:border-dark-5" style="width: 100%">
-                                <img src="/dist/images/logo.png" class="w-10" alt=""
-                                    style="display: block;margin-left: auto;margin-right: auto;">
-                                {{ $network->username }} - <small>{{ $network->name }}</small>
-                                <br>
-                                {{ number_format((int) $network->valid_left - (int) $network->invalidLeft->sum('amount')) }}
-                                |
-                                {{ number_format((int) $network->valid_right - (int) $network->invalidRight->sum('amount')) }}
-                            </td>
-                        @else
-                            <td>
-                                &nbsp;<br>
-                                &nbsp;<br>
-                                &nbsp;
-                            </td>
-                        @endif
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="text-center border-b dark:border-dark-5" style="width: 50%">
-                            @php
-                                $downline1Left = $network->downline->filter(function ($item) {
-                                    return false !== stristr(substr($item->network, -1), 'l');
-                                });
-                            @endphp
-                            @if ($downline1Left->count() > 0)
-                                <img src="/dist/images/logo.png" class="w-10" alt=""
-                                    style="display: block;margin-left: auto;margin-right: auto;">
-                                {{ $downline1Left->first()->username }} -
-                                <small>{{ $downline1Left->first()->name }}</small>
-                                <br>
-                                {{ number_format((int) $downline1Left->first()->valid_left - (int) $downline1Left->first()->invalidLeft->sum('amount')) }}
-                                |
-                                {{ number_format((int) $downline1Left->first()->valid_right - (int) $downline1Left->first()->invalidRight->sum('amount')) }}
+                <div class="overflow-x-auto">
+                    <table class="table">
+                        <tr>
+                            @if ($network)
+                                <td colspan="4" class="text-center border-b dark:border-dark-5" style="width: 100%">
+                                    <img src="/dist/images/logo.png" class="w-10" alt=""
+                                        style="display: block;margin-left: auto;margin-right: auto;">
+                                    {{ $network->username }} - <small>{{ $network->name }}</small>
+                                    <br>
+                                    {{ number_format((int) $network->valid_left - (int) $network->invalidLeft->sum('amount')) }}
+                                    |
+                                    {{ number_format((int) $network->valid_right - (int) $network->invalidRight->sum('amount')) }}
+                                </td>
                             @else
-                                &nbsp;<br>
-                                &nbsp;<br>
-                                &nbsp;
+                                <td>
+                                    &nbsp;<br>
+                                    &nbsp;<br>
+                                    &nbsp;
+                                </td>
                             @endif
-                        </td>
-                        <td colspan="2" class="text-center border-b dark:border-dark-5" style="width: 50%">
-                            @php
-                                $downline1Right = $network->downline->filter(function ($item) {
-                                    return false !== stristr(substr($item->network, -1), 'r');
-                                });
-                            @endphp
-                            @if ($downline1Right->count() > 0)
-                                <img src="/dist/images/logo.png" class="w-10" alt=""
-                                    style="display: block;margin-left: auto;margin-right: auto;">
-                                {{ $downline1Right->first()->username }} -
-                                <small>{{ $downline1Right->first()->name }}</small>
-                                <br>
-                                {{ number_format((int) $downline1Right->first()->valid_left - (int) $downline1Right->first()->invalidLeft->sum('amount')) }}
-                                |
-                                {{ number_format((int) $downline1Right->first()->valid_right - (int) $downline1Right->first()->invalidRight->sum('amount')) }}
-                            @else
-                                &nbsp;<br>
-                                &nbsp;<br>
-                                &nbsp;
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center border-b dark:border-dark-5" style="width: 25%">
-                            @if ($downline1Left->first())
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center border-b dark:border-dark-5" style="width: 50%">
                                 @php
-                                    $downline2Left = $downline1Left->first()->downline->filter(function ($item) {
+                                    $downline1Left = $network->downline->filter(function ($item) {
                                         return false !== stristr(substr($item->network, -1), 'l');
                                     });
                                 @endphp
-                                @if ($downline2Left->count() > 0)
+                                @if ($downline1Left->count() > 0)
                                     <img src="/dist/images/logo.png" class="w-10" alt=""
                                         style="display: block;margin-left: auto;margin-right: auto;">
-                                    {{ $downline2Left->first()->username }} -
-                                    <small>{{ $downline2Left->first()->name }}</small>
+                                    {{ $downline1Left->first()->username }} -
+                                    <small>{{ $downline1Left->first()->name }}</small>
                                     <br>
-                                    {{ number_format((int) $downline2Left->first()->valid_left - (int) $downline2Left->first()->invalidLeft->sum('amount')) }}
+                                    {{ number_format((int) $downline1Left->first()->valid_left - (int) $downline1Left->first()->invalidLeft->sum('amount')) }}
                                     |
-                                    {{ number_format((int) $downline2Left->first()->valid_right - (int) $downline2Left->first()->invalidRight->sum('amount')) }}
-                                    <br>
-                                    @if ($downline2Left->first()->downline->count() > 0)
-                                        <a href="/downline?key={{ $downline2Left->first()->id }}"
-                                            class="btn btn-sm btn-secondary">Next</a>
-                                    @endif
+                                    {{ number_format((int) $downline1Left->first()->valid_right - (int) $downline1Left->first()->invalidRight->sum('amount')) }}
+                                @else
+                                    &nbsp;<br>
+                                    &nbsp;<br>
+                                    &nbsp;
                                 @endif
-                            @else
-                                &nbsp;<br>
-                                &nbsp;<br>
-                                &nbsp;
-                            @endif
-                        </td>
-                        <td class="text-center border-b dark:border-dark-5" style="width: 25%">
-                            @if ($downline1Left->first())
+                            </td>
+                            <td colspan="2" class="text-center border-b dark:border-dark-5" style="width: 50%">
                                 @php
-                                    $downline2Right = $downline1Left->first()->downline->filter(function ($item) {
+                                    $downline1Right = $network->downline->filter(function ($item) {
                                         return false !== stristr(substr($item->network, -1), 'r');
                                     });
                                 @endphp
-                                @if ($downline2Right->count() > 0)
+                                @if ($downline1Right->count() > 0)
                                     <img src="/dist/images/logo.png" class="w-10" alt=""
                                         style="display: block;margin-left: auto;margin-right: auto;">
-                                    {{ $downline2Right->first()->username }} -
-                                    <small>{{ $downline2Right->first()->name }}</small>
+                                    {{ $downline1Right->first()->username }} -
+                                    <small>{{ $downline1Right->first()->name }}</small>
                                     <br>
-                                    {{ number_format((int) $downline2Right->first()->valid_left - (int) $downline2Right->first()->invalidLeft->sum('amount')) }}
+                                    {{ number_format((int) $downline1Right->first()->valid_left - (int) $downline1Right->first()->invalidLeft->sum('amount')) }}
                                     |
-                                    {{ number_format((int) $downline2Right->first()->valid_right - (int) $downline2Right->first()->invalidRight->sum('amount')) }}
-                                    <br>
-                                    @if ($downline2Right->first()->downline->count() > 0)
-                                        <a href="/downline?key={{ $downline2Right->first()->id }}"
-                                            class="btn btn-sm btn-secondary">Next</a>
-                                    @endif
+                                    {{ number_format((int) $downline1Right->first()->valid_right - (int) $downline1Right->first()->invalidRight->sum('amount')) }}
+                                @else
+                                    &nbsp;<br>
+                                    &nbsp;<br>
+                                    &nbsp;
                                 @endif
-                            @else
-                                &nbsp;<br>
-                                &nbsp;<br>
-                                &nbsp;
-                            @endif
-                        </td>
-                        <td class="text-center border-b dark:border-dark-5" style="width: 25%">
-                            @if ($downline1Right->first())
-                                @php
-                                    $downline12Left = $downline1Right->first()->downline->filter(function ($item) {
-                                        return false !== stristr(substr($item->network, -1), 'l');
-                                    });
-                                @endphp
-                                @if ($downline12Left->count() > 0)
-                                    <img src="/dist/images/logo.png" class="w-10" alt=""
-                                        style="display: block;margin-left: auto;margin-right: auto;">
-                                    {{ $downline12Left->first()->username }} -
-                                    <small>{{ $downline12Left->first()->name }}</small>
-                                    <br>
-                                    {{ number_format((int) $downline12Left->first()->valid_left - (int) $downline12Left->first()->invalidLeft->sum('amount')) }}
-                                    |
-                                    {{ number_format((int) $downline12Left->first()->valid_right - (int) $downline12Left->first()->invalidRight->sum('amount')) }}
-                                    <br>
-                                    @if ($downline12Left->first()->downline->count() > 0)
-                                        <a href="/downline?key={{ $downline12Left->first()->id }}"
-                                            class="btn btn-sm btn-secondary">Next</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center border-b dark:border-dark-5" style="width: 25%">
+                                @if ($downline1Left->first())
+                                    @php
+                                        $downline2Left = $downline1Left->first()->downline->filter(function ($item) {
+                                            return false !== stristr(substr($item->network, -1), 'l');
+                                        });
+                                    @endphp
+                                    @if ($downline2Left->count() > 0)
+                                        <img src="/dist/images/logo.png" class="w-10" alt=""
+                                            style="display: block;margin-left: auto;margin-right: auto;">
+                                        {{ $downline2Left->first()->username }} -
+                                        <small>{{ $downline2Left->first()->name }}</small>
+                                        <br>
+                                        {{ number_format((int) $downline2Left->first()->valid_left - (int) $downline2Left->first()->invalidLeft->sum('amount')) }}
+                                        |
+                                        {{ number_format((int) $downline2Left->first()->valid_right - (int) $downline2Left->first()->invalidRight->sum('amount')) }}
+                                        <br>
+                                        @if ($downline2Left->first()->downline->count() > 0)
+                                            <a href="/downline?key={{ $downline2Left->first()->id }}"
+                                                class="btn btn-sm btn-secondary">Next</a>
+                                        @endif
                                     @endif
+                                @else
+                                    &nbsp;<br>
+                                    &nbsp;<br>
+                                    &nbsp;
                                 @endif
-                            @else
-                                &nbsp;<br>
-                                &nbsp;<br>
-                                &nbsp;
-                            @endif
-                        </td>
-                        <td class="text-center border-b dark:border-dark-5" style="width: 25%">
-                            @if ($downline1Right->first())
-                                @php
-                                    $downline12Right = $downline1Right->first()->downline->filter(function ($item) {
-                                        return false !== stristr(substr($item->network, -1), 'r');
-                                    });
-                                @endphp
-                                @if ($downline12Right->count() > 0)
-                                    <img src="/dist/images/logo.png" class="w-10" alt=""
-                                        style="display: block;margin-left: auto;margin-right: auto;">
-                                    {{ $downline12Right->first()->username }} -
-                                    <small>{{ $downline12Right->first()->name }}</small>
-                                    <br>
-                                    {{ number_format((int) $downline12Right->first()->valid_left - (int) $downline12Right->first()->invalidLeft->sum('amount')) }}
-                                    |
-                                    {{ number_format((int) $downline12Right->first()->valid_right - (int) $downline12Right->first()->invalidRight->sum('amount')) }}
-                                    <br>
-                                    @if ($downline12Right->first()->downline->count() > 0)
-                                        <a href="/downline?key={{ $downline12Right->first()->id }}"
-                                            class="btn btn-sm btn-secondary">Next</a>
+                            </td>
+                            <td class="text-center border-b dark:border-dark-5" style="width: 25%">
+                                @if ($downline1Left->first())
+                                    @php
+                                        $downline2Right = $downline1Left->first()->downline->filter(function ($item) {
+                                            return false !== stristr(substr($item->network, -1), 'r');
+                                        });
+                                    @endphp
+                                    @if ($downline2Right->count() > 0)
+                                        <img src="/dist/images/logo.png" class="w-10" alt=""
+                                            style="display: block;margin-left: auto;margin-right: auto;">
+                                        {{ $downline2Right->first()->username }} -
+                                        <small>{{ $downline2Right->first()->name }}</small>
+                                        <br>
+                                        {{ number_format((int) $downline2Right->first()->valid_left - (int) $downline2Right->first()->invalidLeft->sum('amount')) }}
+                                        |
+                                        {{ number_format((int) $downline2Right->first()->valid_right - (int) $downline2Right->first()->invalidRight->sum('amount')) }}
+                                        <br>
+                                        @if ($downline2Right->first()->downline->count() > 0)
+                                            <a href="/downline?key={{ $downline2Right->first()->id }}"
+                                                class="btn btn-sm btn-secondary">Next</a>
+                                        @endif
                                     @endif
+                                @else
+                                    &nbsp;<br>
+                                    &nbsp;<br>
+                                    &nbsp;
                                 @endif
-                            @else
-                                &nbsp;<br>
-                                &nbsp;<br>
-                                &nbsp;
-                            @endif
-                        </td>
-                    </tr>
-                </table>
+                            </td>
+                            <td class="text-center border-b dark:border-dark-5" style="width: 25%">
+                                @if ($downline1Right->first())
+                                    @php
+                                        $downline12Left = $downline1Right->first()->downline->filter(function ($item) {
+                                            return false !== stristr(substr($item->network, -1), 'l');
+                                        });
+                                    @endphp
+                                    @if ($downline12Left->count() > 0)
+                                        <img src="/dist/images/logo.png" class="w-10" alt=""
+                                            style="display: block;margin-left: auto;margin-right: auto;">
+                                        {{ $downline12Left->first()->username }} -
+                                        <small>{{ $downline12Left->first()->name }}</small>
+                                        <br>
+                                        {{ number_format((int) $downline12Left->first()->valid_left - (int) $downline12Left->first()->invalidLeft->sum('amount')) }}
+                                        |
+                                        {{ number_format((int) $downline12Left->first()->valid_right - (int) $downline12Left->first()->invalidRight->sum('amount')) }}
+                                        <br>
+                                        @if ($downline12Left->first()->downline->count() > 0)
+                                            <a href="/downline?key={{ $downline12Left->first()->id }}"
+                                                class="btn btn-sm btn-secondary">Next</a>
+                                        @endif
+                                    @endif
+                                @else
+                                    &nbsp;<br>
+                                    &nbsp;<br>
+                                    &nbsp;
+                                @endif
+                            </td>
+                            <td class="text-center border-b dark:border-dark-5" style="width: 25%">
+                                @if ($downline1Right->first())
+                                    @php
+                                        $downline12Right = $downline1Right->first()->downline->filter(function ($item) {
+                                            return false !== stristr(substr($item->network, -1), 'r');
+                                        });
+                                    @endphp
+                                    @if ($downline12Right->count() > 0)
+                                        <img src="/dist/images/logo.png" class="w-10" alt=""
+                                            style="display: block;margin-left: auto;margin-right: auto;">
+                                        {{ $downline12Right->first()->username }} -
+                                        <small>{{ $downline12Right->first()->name }}</small>
+                                        <br>
+                                        {{ number_format((int) $downline12Right->first()->valid_left - (int) $downline12Right->first()->invalidLeft->sum('amount')) }}
+                                        |
+                                        {{ number_format((int) $downline12Right->first()->valid_right - (int) $downline12Right->first()->invalidRight->sum('amount')) }}
+                                        <br>
+                                        @if ($downline12Right->first()->downline->count() > 0)
+                                            <a href="/downline?key={{ $downline12Right->first()->id }}"
+                                                class="btn btn-sm btn-secondary">Next</a>
+                                        @endif
+                                    @endif
+                                @else
+                                    &nbsp;<br>
+                                    &nbsp;<br>
+                                    &nbsp;
+                                @endif
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
