@@ -145,7 +145,7 @@ class Registration extends Component
                         array_push($invalid, [
                             'user_id' => $row['id'],
                             'downline_id' => $user->getKey(),
-                            'value' => $this->package,
+                            'amount' => $this->package,
                             'team' => substr($network, -1),
                             'created_at' => now(),
                             'updated_at' => now(),
