@@ -27,15 +27,17 @@
                     <div class="intro-x mt-8">
                         <input type="text" class="intro-x login__input form-control py-3 px-4 border-gray-300 block"
                             wire:model.defer="username" placeholder="Username" autocomplete="off">
-                        <input type="password"
-                            class="intro-x login__input form-control py-3 px-4 border-gray-300 block mt-4"
-                            wire:model.defer="password" placeholder="Password" autocomplete="off">
+                        <div class="input-group">
+                            <input type="password"
+                                class="intro-x login__input form-control py-3 px-4 border-gray-300  mt-4"
+                                wire:model.defer="password" id="myInput" placeholder="Password" autocomplete="off">
+                        </div>
                     </div>
                     <div class="intro-x flex text-gray-700 dark:text-gray-600 text-xs sm:text-sm mt-4">
                         <div class="flex items-center mr-auto">
-                            <input id="remember-me" type="checkbox" class="form-check-input border mr-2"
-                                wire:model.defer="remember">
-                            <label class="cursor-pointer select-none" for="remember-me">Remember me</label>
+                            <input id="remember-me" type="checkbox" onclick="myFunction()"
+                                class="form-check-input border mr-2">
+                            <label class="cursor-pointer select-none" for="remember-me">Show Password</label>
                         </div>
                     </div>
                     <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
@@ -49,4 +51,14 @@
             </div>
         </div>
     </div>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </div>
