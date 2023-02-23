@@ -23,6 +23,7 @@ Route::get('/registration/{upline}/{team}', function (Request $req) {
 
 Route::get('/', \App\Http\Livewire\Home::class);
 Route::get('/{sponsor}/{team}', \App\Http\Livewire\Home::class);
+Route::view('/privacypolicy', 'privacy');
 
 Route::group(['middleware' => ['auth']], function () {
 
